@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* CREAM — base & surface */
+  --color-cream-50: #fbf7f1;
+  --color-cream-100: #f8f3ec;
+  --color-cream-200: #f0eadf;
+  --color-cream-300: #e5ddd0;
+
+  /* TERRACOTTA — primary */
+  --color-terracotta-200: #e8b59a;
+  --color-terracotta-500: #c5704f;
+  --color-terracotta-700: #8f4a32;
+
+  /* SAGE — secondary */
+  --color-sage-100: #dde3dc;
+  --color-sage-300: #a4b0a1;
+  --color-sage-500: #5a6e5a;
+  --color-sage-700: #3f4f40;
+
+  /* HONEY — accent */
+  --color-honey-100: #f5e4c0;
+  --color-honey-500: #d9a14e;
+  --color-honey-700: #a87830;
+
+  /* INK — text */
+  --color-ink-900: #2d2823;
+  --color-ink-700: #4a4138;
+  --color-ink-500: #756b5f;
+  --color-ink-300: #a89f92;
+  --color-ink-100: #d6cdc1;
+
+  /* Semantic */
+  --color-success: #6b8268;
+  --color-error: #b45848;
+  --color-divider: #eae2d4;
+
+  /* Warm-tinted shadows */
+  --shadow-sm: 0 1px 2px rgba(45, 40, 35, 0.06);
+  --shadow-md: 0 2px 8px rgba(45, 40, 35, 0.08);
+  --shadow-lg: 0 8px 24px rgba(45, 40, 35, 0.12);
+  --shadow-xl: 0 16px 40px rgba(45, 40, 35, 0.16);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Fonts */
+  --font-sans: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono",
+    monospace;
+}
+
+html,
+body {
+  background-color: var(--color-cream-100);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-terracotta-200);
+  color: var(--color-ink-900);
+}
