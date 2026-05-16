@@ -30,9 +30,9 @@ Flutter app (`../cubi/`). Hai vai trò chính:
 
 ### Identifiers
 
-- **Apple Team ID:** `VM556ZCL88`
+- **Apple Team ID:** `Y4A8JWGT4J`
 - **Bundle ID:** `family.cubi.app`
-- **appIDs (AASA):** `VM556ZCL88.family.cubi.app`
+- **appIDs (AASA):** `Y4A8JWGT4J.family.cubi.app`
 - **Path pattern:** `/i/*`
 
 Nếu Team ID/Bundle ID đổi, sửa trong
@@ -97,7 +97,7 @@ Expect:
 
 - HTTP `200`
 - `content-type: application/json`
-- Body chứa `"appIDs":["VM556ZCL88.family.cubi.app"]`
+- Body chứa `"appIDs":["Y4A8JWGT4J.family.cubi.app"]`
 
 ## Design tokens
 

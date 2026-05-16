@@ -4,7 +4,7 @@ const AASA = {
   applinks: {
     details: [
       {
-        appIDs: ["VM556ZCL88.family.cubi.app"],
+        appIDs: ["Y4A8JWGT4J.family.cubi.app"],
         components: [
           {
             "/": "/i/*",
