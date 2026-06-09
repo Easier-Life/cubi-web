@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Cubi design tokens — mirrors ../cubi/docs/DESIGN_SYSTEM.md
+   Palette A "Ấm Cổ Điển" (Warm Classical). Warm cream light.
+   Never pure #000 / #FFF. Shadows warm-tinted (ink-900 alpha).
+   ============================================================ */
 @theme inline {
   /* CREAM — base & surface */
   --color-cream-50: #fbf7f1;
@@ -8,6 +13,8 @@
   --color-cream-300: #e5ddd0;
 
   /* TERRACOTTA — primary */
+  --color-terracotta-50: #faf0eb;
+  --color-terracotta-100: #f5d2c1;
   --color-terracotta-200: #e8b59a;
   --color-terracotta-500: #c5704f;
   --color-terracotta-700: #8f4a32;
@@ -35,23 +42,39 @@
   --color-error: #b45848;
   --color-divider: #eae2d4;
 
-  /* Warm-tinted shadows */
+  /* Warm-tinted shadows — rgba(45,40,35,a) = ink-900 + alpha */
   --shadow-sm: 0 1px 2px rgba(45, 40, 35, 0.06);
   --shadow-md: 0 2px 8px rgba(45, 40, 35, 0.08);
   --shadow-lg: 0 8px 24px rgba(45, 40, 35, 0.12);
   --shadow-xl: 0 16px 40px rgba(45, 40, 35, 0.16);
+  --shadow-phone: 0 30px 80px -20px rgba(45, 40, 35, 0.35);
 
   /* Radii */
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 40px;
+  --radius-pill: 999px;
 
-  /* Fonts */
+  /* Fonts — Be Vietnam Pro body, Playfair Display wordmark/editorial display */
   --font-sans: var(--font-be-vietnam-pro), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-mono:
     ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", "Roboto Mono",
     monospace;
+
+  /* Motion — quiet (DESIGN_SYSTEM §5.6). 200ms, material standard easing. */
+  --ease-cubi: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+:root {
+  color-scheme: light;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -64,7 +87,137 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body {
+  position: relative;
+  min-height: 100svh;
+  /* Soft warm light from above — Ghibli, not a flat field. Very restrained. */
+  background-image:
+    radial-gradient(
+      120% 70% at 50% -10%,
+      rgba(245, 228, 192, 0.45) 0%,
+      rgba(248, 243, 236, 0) 60%
+    ),
+    radial-gradient(
+      90% 55% at 88% 8%,
+      rgba(232, 181, 154, 0.22) 0%,
+      rgba(248, 243, 236, 0) 55%
+    );
+  background-attachment: fixed;
+}
+
+/* Faint paper grain overlay — barely there (MUJI honest material). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
   background-color: var(--color-terracotta-200);
   color: var(--color-ink-900);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-terracotta-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+a {
+  color: inherit;
+}
+
+/* Wordmark — Playfair Display, the one branded serif moment (DESIGN_SYSTEM §3.4). */
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Editorial display headings */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Tiny uppercase section label (Eyebrow scale) */
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Quiet scroll reveal — fade + small rise. Page-turn, not banner.
+   Hidden state only applies when JS marks <html class="js">; so
+   no-JS / crawlers always see content (good for SEO + AI).
+   ============================================================ */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s var(--ease-cubi),
+    transform 0.6s var(--ease-cubi);
+  will-change: opacity, transform;
+}
+
+.js .reveal[data-revealed="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Long-form legal / prose */
+.prose-cubi {
+  color: var(--color-ink-700);
+  line-height: 1.7;
+  font-size: 16px;
+}
+.prose-cubi p {
+  margin-top: 0.85em;
+}
+.prose-cubi p:first-child {
+  margin-top: 0;
+}
+.prose-cubi ul {
+  margin-top: 0.7em;
+  padding-left: 1.1em;
+  list-style: none;
+}
+.prose-cubi li {
+  position: relative;
+  margin-top: 0.45em;
+  padding-left: 0.35em;
+}
+.prose-cubi li::before {
+  content: "";
+  position: absolute;
+  left: -0.55em;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background-color: var(--color-terracotta-200);
 }

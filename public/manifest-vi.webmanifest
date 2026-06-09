@@ -1,0 +1,14 @@
+{
+  "name": "Cubi — Nhật ký bé cho cả nhà",
+  "short_name": "Cubi",
+  "description": "Nhật ký ảnh riêng tư của bé cho cả nhà. Ông bà ở xa vẫn thấy bé lớn lên mỗi ngày trên widget màn hình chính.",
+  "start_url": "/vi",
+  "display": "standalone",
+  "background_color": "#f8f3ec",
+  "theme_color": "#f8f3ec",
+  "lang": "vi",
+  "categories": ["lifestyle", "photo", "family"],
+  "icons": [
+    { "src": "/cubi-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

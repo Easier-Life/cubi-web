@@ -1,0 +1,14 @@
+{
+  "name": "Cubi — A baby diary for the whole family",
+  "short_name": "Cubi",
+  "description": "A private photo diary of your baby for the whole family. Family far away watch the baby grow every day, right on the home-screen widget.",
+  "start_url": "/en",
+  "display": "standalone",
+  "background_color": "#f8f3ec",
+  "theme_color": "#f8f3ec",
+  "lang": "en",
+  "categories": ["lifestyle", "photo", "family"],
+  "icons": [
+    { "src": "/cubi-mark.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
