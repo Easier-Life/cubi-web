@@ -55,7 +55,7 @@ export function organizationLd() {
     name: "Cubi",
     url: siteConfig.url,
     email: siteConfig.contactEmail,
-    logo: `${siteConfig.url}/cubi-mark.svg`,
+    logo: `${siteConfig.url}/app-icon-512.png`,
     foundingLocation: { "@type": "Country", name: "Vietnam" },
   };
 }

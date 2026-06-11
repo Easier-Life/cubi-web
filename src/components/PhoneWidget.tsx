@@ -81,6 +81,27 @@ export function PhoneWidget({
               <div className="absolute left-[60%] top-[28%] h-12 w-12 rounded-full bg-honey-100/50 blur-lg" />
               <div className="absolute left-[44%] top-[46%] h-24 w-24 rounded-full bg-terracotta-100/30 blur-2xl" />
 
+              {/* the brand daisy, drifting in the light — echoes the app icon */}
+              <svg
+                viewBox="0 0 64 64"
+                aria-hidden="true"
+                className="absolute left-[22%] top-[16%] h-14 w-14 -rotate-12 opacity-90 drop-shadow-[0_2px_6px_rgba(143,74,50,0.25)]"
+              >
+                {Array.from({ length: 8 }, (_, i) => (
+                  <ellipse
+                    key={i}
+                    cx="32"
+                    cy="15"
+                    rx="6.5"
+                    ry="12"
+                    fill="#FBF7F1"
+                    transform={`rotate(${i * 45} 32 32)`}
+                  />
+                ))}
+                <circle cx="32" cy="32" r="7.5" fill="#D9A14E" />
+                <circle cx="32" cy="32" r="4" fill="#F5E4C0" opacity="0.85" />
+              </svg>
+
               {/* age pill — frosted glass, bottom-right */}
               <div className="absolute bottom-3 right-3 rounded-full bg-ink-900/35 px-3 py-1 text-[11px] font-semibold text-cream-50 backdrop-blur-md">
                 {agePill}
@@ -112,7 +133,7 @@ export function PhoneWidget({
       </div>
 
       {/* floating reaction chip — tells the no-comments-just-hearts story */}
-      <div className="absolute -right-3 top-[34%] hidden items-center gap-2 rounded-2xl border border-cream-300 bg-cream-50 px-3 py-2 shadow-[var(--shadow-lg)] sm:-right-6 sm:flex">
+      <div className="absolute -right-2 top-[34%] z-20 flex items-center gap-2 rounded-2xl border border-cream-300 bg-cream-50 px-3 py-2 shadow-[var(--shadow-lg)] sm:-right-6">
         <span
           className="grid h-7 w-7 place-items-center rounded-full bg-terracotta-50 text-[14px]"
           aria-hidden="true"

@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import { hasAppStore, hasPlayStore, siteConfig } from "@/lib/site";
+import { CubiMark } from "./CubiMark";
 
 function AppleGlyph() {
   return (
@@ -49,11 +50,8 @@ function Badge({
 
 function ComingSoonBadge({ label }: { label: string }) {
   return (
-    <span className="inline-flex min-h-[52px] items-center gap-3 rounded-lg border border-cream-300 bg-cream-50 px-4 py-2.5 text-ink-500">
-      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7.5V12l3 1.8" />
-      </svg>
+    <span className="inline-flex min-h-[52px] items-center gap-3 rounded-lg border border-terracotta-100 bg-terracotta-50/70 px-4 py-2.5 text-terracotta-700">
+      <CubiMark size={26} />
       <span className="text-[14px] font-semibold">{label}</span>
     </span>
   );
