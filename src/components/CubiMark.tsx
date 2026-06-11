@@ -1,7 +1,8 @@
 /**
  * Cubi logomark — the real app icon (terracotta crescent moon cradling a
  * daisy), so the mark on the web is pixel-identical to the icon on the
- * phone. Served from /app-icon-192.png (512px master in /app-icon-512.png).
+ * phone. /app-icon-128.png (~22 KB) covers the largest render (34px) at 3×
+ * DPR; the 512px master lives in /app-icon-512.png for manifest/OG/JSON-LD.
  */
 export function CubiMark({
   size = 32,
@@ -15,7 +16,7 @@ export function CubiMark({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/app-icon-192.png"
+      src="/app-icon-128.png"
       width={size}
       height={size}
       alt={title ?? ""}

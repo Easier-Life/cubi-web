@@ -77,10 +77,14 @@ export default async function SiteLayout({
   return (
     <html lang={htmlLang[locale]} className={fontVariables} suppressHydrationWarning>
       <body className="bg-cream-100 text-ink-900 antialiased">
-        {/* add `js` before paint so reveal animations never flash for JS users */}
+        {/* add `js` before paint so reveal animations never flash for JS users.
+            The timeout is a React-free failsafe: if the app bundle never loads
+            (flaky network), every .reveal is force-shown — content must never
+            stay hidden. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
+            __html:
+              "document.documentElement.classList.add('js');setTimeout(function(){for(var e=document.querySelectorAll('.reveal:not([data-revealed])'),t=0;t<e.length;t++)e[t].setAttribute('data-revealed','true')},2000);",
           }}
         />
 
