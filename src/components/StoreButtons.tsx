@@ -1,5 +1,8 @@
+"use client";
+
 import type { Locale } from "@/lib/i18n";
-import { hasAppStore, hasPlayStore, siteConfig } from "@/lib/site";
+import { appStoreUrl, hasAppStore, hasPlayStore, siteConfig } from "@/lib/site";
+import { useDevicePlatform } from "@/lib/platform";
 import { CubiMark } from "./CubiMark";
 
 function AppleGlyph() {
@@ -64,36 +67,48 @@ export function StoreButtons({
   locale: Locale;
   className?: string;
 }) {
+  // Detected after mount; "other" during SSR so the App-Store-first order
+  // below matches the server markup and hydrates cleanly.
+  const platform = useDevicePlatform();
   const appleSmall = locale === "vi" ? "Tải về trên" : "Download on the";
   const playSmall = locale === "vi" ? "Tải về từ" : "GET IT ON";
 
+  const apple = hasAppStore() ? (
+    <Badge
+      key="ios"
+      href={appStoreUrl(locale)}
+      glyph={<AppleGlyph />}
+      small={appleSmall}
+      big="App Store"
+    />
+  ) : (
+    <ComingSoonBadge
+      key="ios"
+      label={
+        locale === "vi"
+          ? "Sắp có trên App Store"
+          : "Coming soon to the App Store"
+      }
+    />
+  );
+
+  const play = hasPlayStore() ? (
+    <Badge
+      key="android"
+      href={siteConfig.store.playStore}
+      glyph={<PlayGlyph />}
+      small={playSmall}
+      big="Google Play"
+    />
+  ) : null;
+
+  // Lead with the visitor's own store; show both so they can still choose
+  // (and so desktop visitors see the full set).
+  const badges = platform === "android" ? [play, apple] : [apple, play];
+
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
-      {hasAppStore() ? (
-        <Badge
-          href={siteConfig.store.appStore}
-          glyph={<AppleGlyph />}
-          small={appleSmall}
-          big="App Store"
-        />
-      ) : (
-        <ComingSoonBadge
-          label={
-            locale === "vi"
-              ? "Sắp có trên App Store"
-              : "Coming soon to the App Store"
-          }
-        />
-      )}
-
-      {hasPlayStore() ? (
-        <Badge
-          href={siteConfig.store.playStore}
-          glyph={<PlayGlyph />}
-          small={playSmall}
-          big="Google Play"
-        />
-      ) : null}
+      {badges}
     </div>
   );
 }

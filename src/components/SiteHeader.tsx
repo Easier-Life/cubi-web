@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { type Locale, t } from "@/lib/i18n";
+import { downloadHref, useDevicePlatform } from "@/lib/platform";
 import { ui } from "@/content/ui";
 import { Wordmark } from "./Wordmark";
 import { Button } from "./Button";
@@ -11,6 +12,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export function SiteHeader({ locale }: { locale: Locale }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const platform = useDevicePlatform();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -35,6 +37,9 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   ];
 
   const home = `/${locale}`;
+  // On a phone, the download CTA goes straight to the visitor's store; on
+  // desktop/unknown it scrolls to the on-page section with both stores.
+  const getCubiHref = downloadHref(platform, locale, `${home}#download`);
 
   return (
     <header
@@ -61,7 +66,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
         <div className="hidden items-center gap-3 md:flex">
           <LanguageSwitcher locale={locale} ariaLabel={t(ui.switchLanguage, locale)} />
-          <Button href={`${home}#download`} variant="primary" size="md">
+          <Button href={getCubiHref} variant="primary" size="md">
             {t(ui.nav.download, locale)}
           </Button>
         </div>
@@ -111,10 +116,11 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                 ariaLabel={t(ui.switchLanguage, locale)}
               />
               <Button
-                href={`${home}#download`}
+                href={getCubiHref}
                 variant="primary"
                 size="md"
                 className="flex-1"
+                onClick={() => setOpen(false)}
               >
                 {t(ui.nav.download, locale)}
               </Button>

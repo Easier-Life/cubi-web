@@ -29,6 +29,7 @@ export function Button({
   disabled,
   className = "",
   ariaLabel,
+  onClick,
 }: {
   children: ReactNode;
   href?: string;
@@ -38,6 +39,7 @@ export function Button({
   disabled?: boolean;
   className?: string;
   ariaLabel?: string;
+  onClick?: () => void;
 }) {
   const cls = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
 
@@ -62,6 +64,7 @@ export function Button({
         rel="noopener noreferrer"
         className={cls}
         aria-label={ariaLabel}
+        onClick={onClick}
       >
         {children}
       </a>
@@ -69,7 +72,7 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={cls} aria-label={ariaLabel}>
+    <Link href={href} className={cls} aria-label={ariaLabel} onClick={onClick}>
       {children}
     </Link>
   );

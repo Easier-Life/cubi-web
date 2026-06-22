@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { type Bilingual, type Locale, ogLocale, t } from "@/lib/i18n";
-import { siteConfig, hasAppStore } from "@/lib/site";
+import { appStoreUrl, siteConfig, hasAppStore } from "@/lib/site";
 
 /**
  * Build locale-aware Metadata with canonical + hreflang alternates and
@@ -85,8 +85,8 @@ export function softwareApplicationLd(locale: Locale, description: string) {
     publisher: { "@type": "Organization", name: "Cubi", url: siteConfig.url },
   };
   if (hasAppStore()) {
-    base.downloadUrl = siteConfig.store.appStore;
-    base.installUrl = siteConfig.store.appStore;
+    base.downloadUrl = appStoreUrl(locale);
+    base.installUrl = appStoreUrl(locale);
   }
   return base;
 }

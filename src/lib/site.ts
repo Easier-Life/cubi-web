@@ -1,9 +1,13 @@
+import type { Locale } from "@/lib/i18n";
+
 /**
  * Single source of truth for site-wide config.
  *
- * ▶ STORE LINKS: paste the real store URLs below. Until `appStore` is a real
- *   https URL, download buttons render a calm "coming soon" state instead of a
- *   dead link. Everything else (CTAs, structured data) reads from here.
+ * ▶ STORE LINKS: the live store URLs live below. The App Store listing is
+ *   language-specific (the Vietnamese and English App Store pages have
+ *   different slugs), so it's keyed by locale; Google Play localizes itself
+ *   from one URL. Until a URL is a real https link, download buttons render a
+ *   calm "coming soon" state instead of a dead link.
  */
 export const siteConfig = {
   name: "Cubi",
@@ -11,10 +15,13 @@ export const siteConfig = {
   domain: "cubi.family",
   contactEmail: "hello@cubi.family",
 
-  // App stores — set these to the live listing URLs.
+  // App stores — live listing URLs (same app, localized pages).
   store: {
-    appStore: "", // e.g. "https://apps.apple.com/app/idXXXXXXXXX"
-    playStore: "", // e.g. "https://play.google.com/store/apps/details?id=family.cubi.app"
+    appStore: {
+      vi: "https://apps.apple.com/vn/app/cubi-nh%E1%BA%ADt-k%C3%BD-b%C3%A9-y%C3%AAu-widget/id6769685747?l=vi",
+      en: "https://apps.apple.com/vn/app/cubi-baby-diary-photo-widget/id6769685747",
+    },
+    playStore: "https://play.google.com/store/apps/details?id=family.cubi.app",
   },
 
   // Identifiers (kept in sync with ../cubi/docs)
@@ -26,5 +33,9 @@ export const siteConfig = {
   } as Record<string, string>,
 } as const;
 
-export const hasAppStore = () => /^https:\/\//.test(siteConfig.store.appStore);
+/** App Store listing URL for the visitor's reading language. */
+export const appStoreUrl = (locale: Locale) => siteConfig.store.appStore[locale];
+
+export const hasAppStore = () =>
+  /^https:\/\//.test(siteConfig.store.appStore.vi);
 export const hasPlayStore = () => /^https:\/\//.test(siteConfig.store.playStore);

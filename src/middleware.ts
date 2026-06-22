@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const SUPPORTED = ["vi", "en"] as const;
-const DEFAULT_LOCALE = "en";
+const DEFAULT_LOCALE = "vi";
 const LOCALE_COOKIE = "cubi-locale";
 
 /** Bare paths that must work without a locale prefix (store consoles, emails, old links). */
@@ -16,7 +16,7 @@ const LOCALIZED_PATHS = new Set([
 /**
  * Pick the visitor's locale: an explicit earlier choice (cookie set when they
  * read a localized page) wins; otherwise the device language via
- * Accept-Language, falling back to English when nothing matches.
+ * Accept-Language, falling back to Vietnamese when nothing matches.
  */
 function detectLocale(request: NextRequest): string {
   const cookie = request.cookies.get(LOCALE_COOKIE)?.value;
