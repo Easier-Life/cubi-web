@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/i18n";
 import { appStoreUrl, hasAppStore, hasPlayStore, siteConfig } from "@/lib/site";
+import { type Platform, platformFromUserAgent } from "@/lib/platform-detect";
 
-export type Platform = "ios" | "android" | "other";
+export { platformFromUserAgent } from "@/lib/platform-detect";
+export type { Platform } from "@/lib/platform-detect";
 
 /**
  * Best-effort mobile OS detection from the user agent. Returns "other" when
@@ -11,14 +13,13 @@ export type Platform = "ios" | "android" | "other";
  */
 export function detectPlatform(): Platform {
   if (typeof navigator === "undefined") return "other";
-  const ua = navigator.userAgent || "";
-  if (/android/i.test(ua)) return "android";
+  const fromUa = platformFromUserAgent(navigator.userAgent);
+  if (fromUa !== "other") return fromUa;
   // iPadOS 13+ reports itself as desktop Safari ("MacIntel"); the touch
   // points are what give an actual iPad away.
   const iPadOS =
     navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
-  if (/iphone|ipad|ipod/i.test(ua) || iPadOS) return "ios";
-  return "other";
+  return iPadOS ? "ios" : "other";
 }
 
 /**

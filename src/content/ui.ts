@@ -45,6 +45,7 @@ export const ui = {
     privacy: { vi: "Chính sách bảo mật", en: "Privacy Policy" } as Bilingual,
     support: { vi: "Hỗ trợ", en: "Support" } as Bilingual,
     delete: { vi: "Xóa tài khoản", en: "Account deletion" } as Bilingual,
+    download: { vi: "Tải Cubi", en: "Get Cubi" } as Bilingual,
   },
   support: {
     emailLabel: { vi: "Email hỗ trợ", en: "Support email" } as Bilingual,
