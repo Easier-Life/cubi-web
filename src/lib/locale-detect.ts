@@ -4,17 +4,18 @@ import { isLocale, locales, type Locale } from "@/lib/i18n";
 /** Cookie remembering the last locale the visitor read (set in middleware). */
 export const LOCALE_COOKIE = "cubi-locale";
 
-// No language signal at all (no Accept-Language) → Vietnamese, our primary
-// audience. A real but unsupported language (e.g. fr, ja) → English.
-const NO_SIGNAL_LOCALE: Locale = "vi";
+// When we can't resolve a supported language — no Accept-Language at all, or a
+// real but unsupported one (e.g. fr, ja) — fall back to English. Vietnamese is
+// only chosen when the device explicitly asks for it.
+const NO_SIGNAL_LOCALE: Locale = "en";
 const FOREIGN_LOCALE: Locale = "en";
 
 /**
  * Pick the visitor's locale from a request: an explicit earlier choice (the
  * cookie set when they read a localized page) wins; otherwise the device
- * language via Accept-Language. If that language is one we don't support, fall
- * back to English; only when no device language can be read at all do we
- * default to Vietnamese.
+ * language via Accept-Language. Anything we can't resolve to a supported
+ * language — an unsupported language, or no Accept-Language at all — falls back
+ * to English.
  *
  * Shared by the locale middleware and the `/download` redirect so the two can
  * never disagree about which language a bare URL should resolve to.
