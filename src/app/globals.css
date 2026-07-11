@@ -131,6 +131,36 @@ a {
   color: inherit;
 }
 
+/* ============================================================
+   Chạm-giữ (hold) hành xử như chạm (tap)
+   Người dùng lớn tuổi / không rành công nghệ hay NHẤN-GIỮ thay vì
+   tap. Trên mobile browser, giữ một control (<button>/<a>) khởi động
+   bôi-chọn chữ hoặc bật menu callout iOS thay vì bắn tap — thấy rõ ở
+   màn mời (/i/[code]): nút "Sao chép mã" và badge cửa hàng. Tắt
+   select + callout trên control và đặt touch-action: manipulation để
+   cú tap ăn ngay. Văn bản nội dung vẫn chọn được (chỉ nhắm control);
+   link trong prose + mailto:/tel: được bật lại bên dưới.
+   ============================================================ */
+button,
+summary,
+[role="button"],
+a[href] {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Link trong văn bản dài (pháp lý / prose) và mailto:/tel: vẫn chọn +
+   long-press-copy được, để người đọc copy cả đoạn hoặc copy URL/email. */
+.prose-cubi a,
+a[href^="mailto:"],
+a[href^="tel:"] {
+  -webkit-touch-callout: default;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 /* Wordmark — Playfair Display, the one branded serif moment (DESIGN_SYSTEM §3.4). */
 .wordmark {
   font-family: var(--font-display);
