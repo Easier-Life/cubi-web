@@ -53,10 +53,12 @@ export async function generateMetadata({
   const title = inviteMetaTitle(formatted, locale);
   const description = inviteMetaDescription(locale);
 
-  // One shared, statically-prerendered card per language — the same warm image
-  // for every invite of that language, so scrapers never hit a cold render.
+  // One shared static card per language, served straight from public/ — a
+  // real .png URL (Zalo's scraper rejects extension-less image URLs) that is
+  // small, warm on the CDN, and never cold-renders. Authoring source lives in
+  // /i/preview/[lang]; see that route for how to regenerate these files.
   const image = {
-    url: `${siteConfig.url}/i/preview/${locale}`,
+    url: `${siteConfig.url}/og/invite-${locale}.png`,
     width: 1200,
     height: 630,
     alt:

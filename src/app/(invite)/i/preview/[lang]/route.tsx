@@ -2,16 +2,23 @@ import { inviteOgContent, renderOgImage } from "@/lib/og";
 import { isLocale, locales } from "@/lib/i18n";
 
 /**
- * One shared, localized preview image for every invite link.
+ * Authoring source for the invite preview card — NOT what og:image points at.
+ *
+ * og:image references the static, quantized copies in `public/og/invite-*.png`
+ * instead: Zalo's scraper chokes on extension-less image URLs, and Satori's
+ * raw PNG output is ~3× heavier than the quantized files. After editing the
+ * card (here or in lib/og.tsx), regenerate the public copies:
+ *
+ *   npm run build && npx next start -p 3789 &
+ *   curl -s localhost:3789/i/preview/vi | python3 -c "from PIL import Image; import sys, io; \
+ *     Image.open(io.BytesIO(sys.stdin.buffer.read())).convert('RGB').convert('P', \
+ *     palette=Image.ADAPTIVE, colors=255).save('public/og/invite-vi.png', optimize=True)"
+ *   # same for /en → public/og/invite-en.png
  *
  * The card never depends on the invite code, so it must NOT live under the
  * dynamic `/i/[code]` segment — that minted a unique image URL per code, each
  * a cold on-demand render. Social scrapers (Facebook/Zalo) with short timeouts
  * would trip on that first cold render and cache a broken preview per link.
- *
- * Here there are exactly two URLs — `/i/preview/vi` and `/i/preview/en` —
- * prerendered at build (`force-static`) and served from the CDN, so every
- * invite of a given language points at the same warm, instant image.
  */
 export const dynamic = "force-static";
 

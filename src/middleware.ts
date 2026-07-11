@@ -14,6 +14,16 @@ const LOCALIZED_PATHS = new Set([
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  // Invite pages are dynamic, and Next consults htmlLimitedBots only when the
+  // request carries a non-empty User-Agent — a UA-less scraper would still get
+  // og:* streamed into <body> instead of <head>. Stamp a synthetic UA so
+  // metadata always renders blocking there (see htmlLimitedBots in next.config).
+  if (pathname.startsWith("/i/") && !request.headers.get("user-agent")) {
+    const headers = new Headers(request.headers);
+    headers.set("user-agent", "ua-less-scraper");
+    return NextResponse.next({ request: { headers } });
+  }
+
   // /vi/* or /en/* — remember the locale the visitor is reading, so a later
   // visit to a bare URL keeps their language.
   const prefix = pathname.split("/")[1] ?? "";
@@ -45,5 +55,6 @@ export const config = {
     "/delete-account",
     "/vi/:path*",
     "/en/:path*",
+    "/i/:path*",
   ],
 };
