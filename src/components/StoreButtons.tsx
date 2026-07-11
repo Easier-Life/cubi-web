@@ -1,8 +1,10 @@
 "use client";
 
-import type { Locale } from "@/lib/i18n";
+import { t, type Locale } from "@/lib/i18n";
 import { appStoreUrl, hasAppStore, hasPlayStore, siteConfig } from "@/lib/site";
-import { useDevicePlatform } from "@/lib/platform";
+import { useDevicePlatform, type Platform } from "@/lib/platform";
+import { copyToClipboard } from "@/lib/clipboard";
+import { ui } from "@/content/ui";
 import { CubiMark } from "./CubiMark";
 
 function AppleGlyph() {
@@ -29,21 +31,27 @@ function Badge({
   glyph,
   small,
   big,
+  onClick,
 }: {
   href: string;
   glyph: React.ReactNode;
   small: string;
   big: string;
+  onClick?: () => void;
 }) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={onClick}
       className="inline-flex min-h-[52px] items-center gap-3 rounded-lg bg-ink-900 px-4 py-2.5 text-cream-50 transition-transform duration-200 ease-[var(--ease-cubi)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-md)] focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-100"
     >
       <span className="text-cream-50">{glyph}</span>
-      <span className="flex flex-col leading-tight">
+      {/* Explicit color: the global unlayered `a { color: inherit }` rule
+          outranks the anchor's own text utility (Tailwind v4 layers), which
+          is what made the big store-name line render dark-on-dark. */}
+      <span className="flex flex-col leading-tight text-cream-50">
         <span className="text-[10px] tracking-wide text-cream-50/80">{small}</span>
         <span className="text-[16px] font-semibold">{big}</span>
       </span>
@@ -63,33 +71,40 @@ function ComingSoonBadge({ label }: { label: string }) {
 export function StoreButtons({
   locale,
   className = "",
+  initialPlatform,
+  copyText,
 }: {
   locale: Locale;
   className?: string;
+  /**
+   * Server-detected platform for dynamic pages (invite): SSR then emits only
+   * the visitor's own badge, no post-hydration pop. Static pages omit it and
+   * keep the render-both-then-refine behavior.
+   */
+  initialPlatform?: Platform;
+  /** When set, a badge tap also writes this to the clipboard (gesture-copy). */
+  copyText?: string;
 }) {
-  // Detected after mount; "other" during SSR so the App-Store-first order
-  // below matches the server markup and hydrates cleanly.
-  const platform = useDevicePlatform();
-  const appleSmall = locale === "vi" ? "Tải về trên" : "Download on the";
-  const playSmall = locale === "vi" ? "Tải về từ" : "GET IT ON";
+  const platform = useDevicePlatform(initialPlatform);
+  const small = t(ui.store.downloadOn, locale);
+  // Fire-and-forget: the user is leaving for the store, no feedback to give.
+  const copyOnTap = copyText
+    ? () => {
+        void copyToClipboard(copyText);
+      }
+    : undefined;
 
   const apple = hasAppStore() ? (
     <Badge
       key="ios"
       href={appStoreUrl(locale)}
       glyph={<AppleGlyph />}
-      small={appleSmall}
-      big="App Store"
+      small={small}
+      big={t(ui.store.iphone, locale)}
+      onClick={copyOnTap}
     />
   ) : (
-    <ComingSoonBadge
-      key="ios"
-      label={
-        locale === "vi"
-          ? "Sắp có trên App Store"
-          : "Coming soon to the App Store"
-      }
-    />
+    <ComingSoonBadge key="ios" label={t(ui.store.comingSoonIphone, locale)} />
   );
 
   const play = hasPlayStore() ? (
@@ -97,14 +112,18 @@ export function StoreButtons({
       key="android"
       href={siteConfig.store.playStore}
       glyph={<PlayGlyph />}
-      small={playSmall}
-      big="Google Play"
+      small={small}
+      big={t(ui.store.android, locale)}
+      onClick={copyOnTap}
     />
   ) : null;
 
-  // Lead with the visitor's own store; show both so they can still choose
-  // (and so desktop visitors see the full set).
-  const badges = platform === "android" ? [play, apple] : [apple, play];
+  // Show only the visitor's own badge on a phone — one obvious button beats a
+  // choice; desktop/unknown keeps both so the visitor can still pick.
+  const badges = [
+    platform !== "android" ? apple : null,
+    platform !== "ios" ? play : null,
+  ];
 
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>

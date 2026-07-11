@@ -23,12 +23,15 @@ export function detectPlatform(): Platform {
 }
 
 /**
- * The visitor's mobile platform, resolved after mount. Renders as "other"
+ * The visitor's mobile platform, resolved after mount. Renders as `initial`
  * during SSR and first paint so server and client markup match, then updates
- * once we can read the user agent.
+ * once we can read the user agent. Dynamic pages that already sniffed the UA
+ * server-side (via `platformFromUserAgent`) pass it as `initial` so the very
+ * first HTML is platform-correct; the post-mount pass only refines edge cases
+ * the server can't see (iPadOS 13+ masquerading as desktop Safari).
  */
-export function useDevicePlatform(): Platform {
-  const [platform, setPlatform] = useState<Platform>("other");
+export function useDevicePlatform(initial: Platform = "other"): Platform {
+  const [platform, setPlatform] = useState<Platform>(initial);
   useEffect(() => {
     setPlatform(detectPlatform());
   }, []);

@@ -16,12 +16,17 @@ export const ui = {
     vi: "Chuyển sang tiếng Anh",
     en: "Switch to Vietnamese",
   } as Bilingual,
-  comingSoon: {
-    vi: "Sắp có trên App Store",
-    en: "Coming soon to the App Store",
-  } as Bilingual,
-  appStore: { vi: "Tải trên App Store", en: "Download on the App Store" } as Bilingual,
-  playStore: { vi: "Tải trên Google Play", en: "Get it on Google Play" } as Bilingual,
+  // Store badge copy: device names, not store brands — "App Store"/"CH Play"
+  // mean nothing to the grandparents the invite flow targets.
+  store: {
+    downloadOn: { vi: "Tải về trên", en: "Download for" } as Bilingual,
+    iphone: { vi: "iPhone", en: "iPhone" } as Bilingual,
+    android: { vi: "Android", en: "Android" } as Bilingual,
+    comingSoonIphone: {
+      vi: "Sắp có trên iPhone",
+      en: "Coming soon for iPhone",
+    } as Bilingual,
+  },
   backHome: { vi: "Về trang chủ", en: "Back to home" } as Bilingual,
   backToTop: { vi: "Lên đầu trang", en: "Back to top" } as Bilingual,
   lastUpdated: { vi: "Cập nhật lần cuối", en: "Last updated" } as Bilingual,
