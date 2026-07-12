@@ -1,11 +1,13 @@
 # Cubi Web — `cubi.family`
 
 Web companion cho app **Cubi** (nhật ký bé cho cả nhà). Repo này độc lập với
-Flutter app (`../cubi/`). Hai vai trò chính:
+Flutter app (`../cubi/`). Ba vai trò chính:
 
-1. **Apple App Site Association (AASA)** — phục vụ Universal Links từ
+1. **Product website** — landing page song ngữ, mobile-first, mô tả đầy đủ app
+   Cubi bằng nội dung crawlable và ảnh chụp sản phẩm thật.
+2. **Apple App Site Association (AASA)** — phục vụ Universal Links từ
    `cubi.family/i/*` để app iOS mở thẳng invite mà không qua Safari.
-2. **Landing page invite** (`/i/{code}`) — fallback khi ông bà tap link mà chưa
+3. **Landing page invite** (`/i/{code}`) — fallback khi ông bà tap link mà chưa
    cài app, hoặc khi Universal Link không trigger (ví dụ in-app browser của
    Zalo/Facebook/Messenger).
 
@@ -20,9 +22,16 @@ Flutter app (`../cubi/`). Hai vai trò chính:
 
 | Route                                          | Mục đích                       |
 | ---------------------------------------------- | ------------------------------ |
-| `/`                                            | Splash page tạm thời           |
-| `/i/[code]`                                    | Landing invite (cream-100 bg)  |
+| `/`                                            | Phát hiện ngôn ngữ → `/vi` hoặc `/en` |
+| `/vi`, `/en`                                   | Product landing page           |
+| `/vi/download`, `/en/download`                 | Trang tải app theo thiết bị     |
+| `/vi/privacy`, `/en/privacy`                   | Chính sách quyền riêng tư       |
+| `/vi/terms`, `/en/terms`                       | Điều khoản sử dụng              |
+| `/vi/support`, `/en/support`                   | Hỗ trợ                          |
+| `/vi/delete-account`, `/en/delete-account`     | Hướng dẫn xóa tài khoản         |
+| `/i/[code]`                                    | Landing invite                  |
 | `/.well-known/apple-app-site-association`      | AASA JSON cho iOS Universal Links |
+| `/.well-known/assetlinks.json`                 | Android App Links               |
 
 > **Lưu ý AASA:** route handler trả `Content-Type: application/json` đúng
 > chuẩn Apple (không thêm `.json` đuôi file, không cần MIME mapping). Apple sẽ
@@ -106,27 +115,26 @@ trong `src/app/globals.css` dưới block `@theme inline`. Tailwind v4 tự sinh
 utility classes (`bg-cream-100`, `text-terracotta-500`, `rounded-md`, …) từ
 các CSS variables này. Reference: `../cubi/docs/DESIGN_SYSTEM.md`.
 
-## Không scope V1
+## Không scope
 
 - Supabase / DB lookup (web không validate code, chỉ display)
-- i18n EN (chỉ tiếng Việt)
-- Auto-read clipboard (PRD cấm — sẽ phá vỡ tin tưởng của ông bà)
-- Server-side rendering của code metadata
+- Web viewer cho nội dung nhật ký riêng tư
 - Analytics, A/B testing
 
 ## Cấu trúc file
 
 ```
-src/app/
-├── layout.tsx                                       # Be Vietnam Pro + metadata
-├── page.tsx                                         # Splash page
-├── globals.css                                      # Tailwind v4 + design tokens
-├── .well-known/
-│   └── apple-app-site-association/
-│       └── route.ts                                 # AASA JSON
-└── i/
-    └── [code]/
-        ├── page.tsx                                 # Landing (server component)
-        ├── CodeCard.tsx                             # Copy-to-clipboard (client)
-        └── OpenInBrowser.tsx                        # Zalo escape hatch (client)
+src/
+├── app/
+│   ├── (site)/[lang]/                               # Marketing + legal, vi/en
+│   ├── (invite)/i/[code]/                           # Invite fallback an toàn
+│   ├── .well-known/                                 # AASA + Android asset links
+│   ├── globals.css                                  # Tailwind + design tokens
+│   ├── robots.ts
+│   └── sitemap.ts
+├── components/                                      # UI + product gallery
+├── content/                                         # Copy song ngữ + legal
+└── lib/                                             # SEO, locale, platform
+
+public/product/                                      # Screenshot WebP tối ưu
 ```

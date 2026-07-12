@@ -90,6 +90,7 @@ body {
 body {
   position: relative;
   min-height: 100svh;
+  overflow-x: clip;
   /* Soft warm light from above — Ghibli, not a flat field. Very restrained. */
   background-image:
     radial-gradient(
@@ -103,6 +104,34 @@ body {
       rgba(248, 243, 236, 0) 55%
     );
   background-attachment: fixed;
+}
+
+.hero-wash {
+  background:
+    radial-gradient(70% 65% at 82% 42%, rgba(245, 228, 192, 0.7), transparent 72%),
+    radial-gradient(55% 60% at 8% 16%, rgba(250, 240, 235, 0.9), transparent 74%);
+}
+
+.product-gallery {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-terracotta-200) transparent;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-gallery::-webkit-scrollbar {
+  height: 6px;
+}
+
+.product-gallery::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--color-terracotta-200);
+}
+
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 /* Faint paper grain overlay — barely there (MUJI honest material). */
@@ -182,33 +211,9 @@ a[href^="tel:"] {
   text-transform: uppercase;
 }
 
-/* ============================================================
-   Quiet scroll reveal — fade + small rise. Page-turn, not banner.
-   Hidden state only applies when JS marks <html class="js">; so
-   no-JS / crawlers always see content (good for SEO + AI).
-   ============================================================ */
-.js .reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.6s var(--ease-cubi),
-    transform 0.6s var(--ease-cubi);
-  will-change: opacity, transform;
-}
-
-.js .reveal[data-revealed="true"] {
-  opacity: 1;
-  transform: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
-  }
-  .js .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
   *,
   *::before,

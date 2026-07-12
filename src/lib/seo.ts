@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { type Bilingual, type Locale, ogLocale, t } from "@/lib/i18n";
-import { appStoreUrl, siteConfig, hasAppStore } from "@/lib/site";
+import {
+  appStoreUrl,
+  siteConfig,
+  hasAppStore,
+  hasPlayStore,
+} from "@/lib/site";
 
 /**
  * Build locale-aware Metadata with canonical + hreflang alternates and
@@ -71,7 +76,11 @@ export function websiteLd() {
   };
 }
 
-export function softwareApplicationLd(locale: Locale, description: string) {
+export function softwareApplicationLd(
+  locale: Locale,
+  description: string,
+  featureList: string[] = [],
+) {
   const base: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "MobileApplication",
@@ -83,10 +92,22 @@ export function softwareApplicationLd(locale: Locale, description: string) {
     inLanguage: ["vi", "en"],
     offers: { "@type": "Offer", price: "0", priceCurrency: "VND" },
     publisher: { "@type": "Organization", name: "Cubi", url: siteConfig.url },
+    image: `${siteConfig.url}/app-icon-512.png`,
+    screenshot: [
+      `${siteConfig.url}/product/moment-${locale}.webp`,
+      `${siteConfig.url}/product/widget-${locale}.webp`,
+      `${siteConfig.url}/product/diary-${locale}.webp`,
+      `${siteConfig.url}/product/film-${locale}.webp`,
+    ],
   };
+  if (featureList.length > 0) base.featureList = featureList;
   if (hasAppStore()) {
-    base.downloadUrl = appStoreUrl(locale);
-    base.installUrl = appStoreUrl(locale);
+    const downloadUrls = [
+      appStoreUrl(locale),
+      ...(hasPlayStore() ? [siteConfig.store.playStore] : []),
+    ];
+    base.downloadUrl = downloadUrls;
+    base.installUrl = downloadUrls;
   }
   return base;
 }

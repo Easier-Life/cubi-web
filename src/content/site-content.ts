@@ -134,6 +134,39 @@ export const siteContent: SiteContent = {
           "vi": "Bé được sáu tháng mười hai ngày, Cubi tự tính và hiện tuổi của bé, không cần mẹ nhớ. Mỗi khoảnh khắc xếp theo một dòng thời gian dịu dàng, để cả nhà thấy bé lớn lên từng chút một.",
           "en": "Six months and twelve days old — Cubi works out the baby's age and shows it on its own, so you never have to count. Each moment sits along a gentle timeline, so the family can see the little one growing bit by bit."
         }
+      },
+      {
+        "icon": "film",
+        "title": {
+          "vi": "Kỉ niệm thành thước phim có nhạc",
+          "en": "Memories become a little film"
+        },
+        "body": {
+          "vi": "Chọn 5–30 ảnh trong nhật ký và một mẫu phim. Cubi ghép thành video có nhạc để bố mẹ lưu về máy hoặc gửi cho cả nhà.",
+          "en": "Pick 5–30 diary photos and a style. Cubi turns them into a keepsake video with music to save or share with the family."
+        }
+      },
+      {
+        "icon": "family",
+        "title": {
+          "vi": "Một nhà, mấy bé cũng vừa",
+          "en": "One family, every little one"
+        },
+        "body": {
+          "vi": "Theo dõi nhiều bé trong một dòng nhật ký gọn gàng. Mỗi mã mời có thể mở đúng nhật ký của một hoặc nhiều bé cho người thân.",
+          "en": "Follow more than one child in one calm timeline. Each invitation can open exactly one or several children's diaries for family."
+        }
+      },
+      {
+        "icon": "measure",
+        "title": {
+          "vi": "Theo dõi hành trình lớn lên",
+          "en": "Follow every growing step"
+        },
+        "body": {
+          "vi": "Lưu cân nặng, chiều cao và những điều bé đang thích bên cạnh ảnh, video và các cột mốc tuổi của bé.",
+          "en": "Keep height, weight and the things your child loves beside their photos, videos and age milestones."
+        }
       }
     ],
     "howItWorks": [

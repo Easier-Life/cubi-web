@@ -3,8 +3,11 @@ import type { Bilingual } from "@/lib/i18n";
 export type FeatureIcon =
   | "journal"
   | "widget"
+  | "film"
   | "invite"
   | "reaction"
+  | "family"
+  | "measure"
   | "privacy"
   | "age";
 

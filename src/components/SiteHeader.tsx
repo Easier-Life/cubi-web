@@ -57,7 +57,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <Link
               key={item.id}
               href={`${home}#${item.id}`}
-              className="text-[14px] font-medium text-ink-700 transition-colors duration-200 hover:text-terracotta-700"
+              className="inline-flex min-h-11 items-center text-[14px] font-medium text-ink-700 transition-colors duration-200 hover:text-terracotta-700"
             >
               {t(item.label, locale)}
             </Link>
@@ -71,26 +71,27 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           </Button>
         </div>
 
-        {/* mobile toggle */}
-        <button
-          type="button"
-          className="grid h-11 w-11 place-items-center rounded-md text-ink-700 md:hidden"
-          aria-expanded={open}
-          aria-label={t(open ? ui.close : ui.menu, locale)}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
-            {open ? (
-              <>
-                <path d="M6 6l12 12M18 6 6 18" />
-              </>
-            ) : (
-              <>
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              </>
-            )}
-          </svg>
-        </button>
+        <div className="flex items-center gap-1.5 md:hidden">
+          <Button
+            href={getCubiHref}
+            variant="primary"
+            size="md"
+            className="!min-h-11 !px-3 !py-2 !text-[13px]"
+          >
+            {t(ui.nav.download, locale)}
+          </Button>
+          <button
+            type="button"
+            className="grid h-11 w-11 place-items-center rounded-md text-ink-700"
+            aria-expanded={open}
+            aria-label={t(open ? ui.close : ui.menu, locale)}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              {open ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
+          </button>
+        </div>
       </div>
 
       {/* mobile menu */}

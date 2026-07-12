@@ -20,7 +20,7 @@ export function Wordmark({
   return (
     <Link
       href={`/${locale}`}
-      className={`group inline-flex items-center gap-2.5 ${className}`}
+      className={`group inline-flex min-h-11 items-center gap-2.5 ${className}`}
       aria-label="Cubi"
     >
       {withMark ? (

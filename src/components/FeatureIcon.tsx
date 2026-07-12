@@ -19,6 +19,14 @@ const paths: Record<FeatureIconKey, React.ReactNode> = {
       <rect x="12.5" y="16" width="6" height="2.4" rx="1.2" fill="currentColor" stroke="none" />
     </>
   ),
+  // a keepsake film with music
+  film: (
+    <>
+      <rect x="3.5" y="5" width="17" height="14" rx="3" />
+      <path d="m10 9 5 3-5 3V9Z" />
+      <path d="M7 3.2v3.6M17 3.2v3.6" />
+    </>
+  ),
   // invite the family — adding a person
   invite: (
     <>
@@ -31,6 +39,24 @@ const paths: Record<FeatureIconKey, React.ReactNode> = {
   reaction: (
     <>
       <path d="M12 19.5c-.4 0-.8-.14-1.1-.42C7.4 16 4 13.2 4 9.6 4 7.3 5.8 5.5 8 5.5c1.6 0 3.1.95 3.8 2.4l.2.42.2-.42c.7-1.45 2.2-2.4 3.8-2.4 2.2 0 4 1.8 4 4.1 0 3.6-3.4 6.4-6.9 9.48-.3.28-.7.42-1.1.42Z" />
+    </>
+  ),
+  // several family members around the same child
+  family: (
+    <>
+      <circle cx="12" cy="8" r="3" />
+      <path d="M6.5 20c.4-3.6 2.6-5.6 5.5-5.6s5.1 2 5.5 5.6" />
+      <circle cx="4.8" cy="10.2" r="2" />
+      <circle cx="19.2" cy="10.2" r="2" />
+      <path d="M1.8 18c.3-2.3 1.5-3.7 3.2-3.7.8 0 1.5.3 2 .8M22.2 18c-.3-2.3-1.5-3.7-3.2-3.7-.8 0-1.5.3-2 .8" />
+    </>
+  ),
+  // height and weight growth
+  measure: (
+    <>
+      <path d="M7 3.5h10v17H7z" />
+      <path d="M7 7h3M7 11h2M7 15h3" />
+      <path d="M14 8.5v7M12 10.5l2-2 2 2M12 13.5l2 2 2-2" />
     </>
   ),
   // privacy — a shield holding a heart

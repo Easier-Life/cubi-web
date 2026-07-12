@@ -42,7 +42,7 @@ export function LegalDocView({
 
       <div className="mt-10 space-y-9">
         {doc.sections.map((section, i) => (
-          <section key={i} className="reveal scroll-mt-24">
+          <section key={i} className="scroll-mt-24">
             <h2 className="font-display text-[20px] font-semibold leading-[1.25] text-ink-900 sm:text-[23px]">
               {t(section.heading, locale)}
             </h2>

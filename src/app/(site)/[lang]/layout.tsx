@@ -16,7 +16,6 @@ import { siteContent } from "@/content/site-content";
 import { ui } from "@/content/ui";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { ScrollReveal } from "@/components/ScrollReveal";
 import { JsonLd } from "@/components/JsonLd";
 
 export const dynamicParams = false;
@@ -77,17 +76,6 @@ export default async function SiteLayout({
   return (
     <html lang={htmlLang[locale]} className={fontVariables} suppressHydrationWarning>
       <body className="bg-cream-100 text-ink-900 antialiased">
-        {/* add `js` before paint so reveal animations never flash for JS users.
-            The timeout is a React-free failsafe: if the app bundle never loads
-            (flaky network), every .reveal is force-shown — content must never
-            stay hidden. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "document.documentElement.classList.add('js');setTimeout(function(){for(var e=document.querySelectorAll('.reveal:not([data-revealed])'),t=0;t<e.length;t++)e[t].setAttribute('data-revealed','true')},2000);",
-          }}
-        />
-
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-cream-50"
@@ -103,7 +91,6 @@ export default async function SiteLayout({
           <SiteFooter locale={locale} />
         </div>
 
-        <ScrollReveal />
         <JsonLd data={[organizationLd(), websiteLd()]} />
       </body>
     </html>

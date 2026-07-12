@@ -53,7 +53,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           <FooterColumn title={t(ui.footer.contact, locale)}>
             <a
               href={`mailto:${siteConfig.contactEmail}`}
-              className="inline-block py-1 text-[14px] text-ink-500 transition-colors hover:text-terracotta-700"
+              className="inline-flex min-h-11 items-center text-[14px] text-ink-500 transition-colors hover:text-terracotta-700"
             >
               {siteConfig.contactEmail}
             </a>
@@ -108,7 +108,7 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="inline-block py-1 text-[14px] text-ink-500 transition-colors duration-200 hover:text-terracotta-700"
+      className="inline-flex min-h-11 items-center text-[14px] text-ink-500 transition-colors duration-200 hover:text-terracotta-700"
     >
       {children}
     </Link>
