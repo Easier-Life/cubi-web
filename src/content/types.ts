@@ -19,7 +19,11 @@ export interface Marketing {
   hero: {
     eyebrow: Bilingual;
     headline: Bilingual;
+    /** Full paragraph — shown from the `sm` breakpoint up. */
     sub: Bilingual;
+    /** One-sentence version for phones, so the product visual reaches the
+     *  first screen instead of sitting a scroll below it. */
+    subShort: Bilingual;
     primaryCta: Bilingual;
     secondaryCta: Bilingual;
   };

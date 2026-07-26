@@ -77,7 +77,7 @@ export default async function SupportPage({
           </div>
           <a
             href={`mailto:${siteConfig.contactEmail}`}
-            className="inline-flex items-center gap-2 rounded-md bg-terracotta-500 px-5 py-3 text-[15px] font-semibold text-cream-50 transition-colors duration-200 hover:bg-terracotta-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:ring-offset-2 focus-visible:ring-offset-terracotta-50"
+            className="inline-flex items-center gap-2 rounded-md bg-terracotta-600 px-5 py-3 text-[15px] font-semibold text-cream-50 transition-colors duration-200 hover:bg-terracotta-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:ring-offset-2 focus-visible:ring-offset-terracotta-50"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <rect x="3" y="5" width="18" height="14" rx="2" />

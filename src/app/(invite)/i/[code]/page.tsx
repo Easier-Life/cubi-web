@@ -151,7 +151,7 @@ export default async function InviteLandingPage({
             <li className="flex gap-3">
               <span
                 aria-hidden="true"
-                className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-terracotta-500 text-[14px] font-semibold text-cream-50"
+                className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-terracotta-600 text-[14px] font-semibold text-cream-50"
               >
                 1
               </span>
@@ -170,7 +170,7 @@ export default async function InviteLandingPage({
             <li className="flex gap-3">
               <span
                 aria-hidden="true"
-                className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-terracotta-500 text-[14px] font-semibold text-cream-50"
+                className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-terracotta-600 text-[14px] font-semibold text-cream-50"
               >
                 2
               </span>

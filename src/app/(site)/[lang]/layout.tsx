@@ -17,6 +17,7 @@ import { ui } from "@/content/ui";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { JsonLd } from "@/components/JsonLd";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export const dynamicParams = false;
 
@@ -75,6 +76,19 @@ export default async function SiteLayout({
 
   return (
     <html lang={htmlLang[locale]} className={fontVariables} suppressHydrationWarning>
+      <head>
+        {/*
+          Pre-paint: arm the scroll reveal, and disarm it 2.5s later no matter
+          what. Content ships visible, so a page whose bundle never loads reads
+          normally instead of stranding sections at opacity 0 (the 4a678f5 bug).
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var d=document.documentElement;try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return}catch(e){}d.classList.add('reveal-ready');setTimeout(function(){if(!window.__cubiRevealAlive)d.classList.remove('reveal-ready')},2500)})()",
+          }}
+        />
+      </head>
       <body className="bg-cream-100 text-ink-900 antialiased">
         <a
           href="#main"
@@ -90,8 +104,9 @@ export default async function SiteLayout({
           </main>
           <SiteFooter locale={locale} />
         </div>
+        <ScrollReveal />
 
-        <JsonLd data={[organizationLd(), websiteLd()]} />
+        <JsonLd data={[organizationLd(locale), websiteLd()]} />
       </body>
     </html>
   );

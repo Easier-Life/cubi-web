@@ -19,7 +19,7 @@ export default function NotFound() {
             </p>
             <Link
               href="/vi"
-              className="mt-7 inline-flex items-center justify-center rounded-md bg-terracotta-500 px-6 py-3 text-[15px] font-semibold text-cream-50 transition-colors hover:bg-terracotta-700"
+              className="mt-7 inline-flex items-center justify-center rounded-md bg-terracotta-600 px-6 py-3 text-[15px] font-semibold text-cream-50 transition-colors hover:bg-terracotta-700"
             >
               Về trang chủ
             </Link>

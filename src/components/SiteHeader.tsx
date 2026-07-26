@@ -29,14 +29,15 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
-  const navItems = [
-    { id: "features", label: ui.nav.features },
-    { id: "how", label: ui.nav.how },
-    { id: "philosophy", label: ui.nav.philosophy },
-    { id: "faq", label: ui.nav.faq },
-  ];
-
   const home = `/${locale}`;
+  // Anchors point at the home page's sections; Guides is a real page, so it
+  // must be an absolute path or it breaks when read from /vi/privacy etc.
+  const navItems = [
+    { href: `${home}#features`, label: ui.nav.features },
+    { href: `${home}#how`, label: ui.nav.how },
+    { href: `${home}#faq`, label: ui.nav.faq },
+    { href: `${home}/guides`, label: ui.nav.guides },
+  ];
   // On a phone, the download CTA goes straight to the visitor's store; on
   // desktop/unknown it scrolls to the on-page section with both stores.
   const getCubiHref = downloadHref(platform, locale, `${home}#download`);
@@ -55,8 +56,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
           {navItems.map((item) => (
             <Link
-              key={item.id}
-              href={`${home}#${item.id}`}
+              key={item.href}
+              href={item.href}
               className="inline-flex min-h-11 items-center text-[14px] font-medium text-ink-700 transition-colors duration-200 hover:text-terracotta-700"
             >
               {t(item.label, locale)}
@@ -103,8 +104,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           >
             {navItems.map((item) => (
               <Link
-                key={item.id}
-                href={`${home}#${item.id}`}
+                key={item.href}
+                href={item.href}
                 onClick={() => setOpen(false)}
                 className="rounded-md px-2 py-3 text-[16px] font-medium text-ink-700 hover:bg-cream-200"
               >

@@ -49,6 +49,10 @@ export const siteContent: SiteContent = {
         "vi": "Cubi giữ lại những khoảnh khắc bé cười, bé tập đi, đôi bàn tay nhỏ xíu, rồi đưa bé về ngay màn hình của cả nhà mỗi ngày. Hôm nay bé đã khác hôm qua, và ông bà ở xa vẫn thấy cháu lớn lên từng chút một.",
         "en": "Cubi keeps the little moments — the first smile, the tiny hand — and brings the baby's latest photo to the home screen each day. Today's baby is already different from yesterday's, and even the family far away watches the little one grow."
       },
+      "subShort": {
+        "vi": "Cubi giữ lại từng ngày bé lớn, rồi đưa bé về ngay màn hình của cả nhà — để ông bà ở xa vẫn thấy cháu mỗi ngày.",
+        "en": "Cubi keeps every day your baby grows and brings them to the whole family's home screen — so faraway grandparents see the little one each day."
+      },
       "primaryCta": {
         "vi": "Tải Cubi",
         "en": "Download Cubi"

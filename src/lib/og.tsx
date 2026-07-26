@@ -1,9 +1,11 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import type { Locale } from "@/lib/i18n";
+import { OG_SIZE } from "@/lib/og-meta";
 
-export const OG_SIZE = { width: 1200, height: 630 };
+// Re-exported so existing importers (the invite + marketing card routes) keep
+// a single entry point; the data itself lives in lib/og-meta.ts.
+export { OG_SIZE, inviteOgContent, siteOgContent, siteOgAlt } from "@/lib/og-meta";
 
 function asset(...parts: string[]): string {
   return join(process.cwd(), "public", ...parts);
@@ -32,18 +34,6 @@ async function loadFonts() {
     { name: "Be Vietnam Pro", data: bold, weight: 700 as const, style: "normal" as const },
   ];
 }
-
-/** Localized copy for the invite-link card, keyed by the sharer's language. */
-export const inviteOgContent: Record<Locale, { subtitle: string; footer: string }> = {
-  vi: {
-    subtitle: "Bạn được mời xem nhật ký của một em bé.",
-    footer: "cubi.family · Cài Cubi và nhập mã mời để cùng xem",
-  },
-  en: {
-    subtitle: "You're invited to a baby's diary.",
-    footer: "cubi.family · Install Cubi and enter your invite code",
-  },
-};
 
 /**
  * Brand Open Graph card. Renders with the bundled Be Vietnam Pro font so it

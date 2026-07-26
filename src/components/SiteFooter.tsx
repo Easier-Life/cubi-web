@@ -13,8 +13,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   const productLinks = [
     { href: `${home}#features`, label: ui.nav.features },
     { href: `${home}#how`, label: ui.nav.how },
-    { href: `${home}#philosophy`, label: ui.nav.philosophy },
     { href: `${home}#faq`, label: ui.nav.faq },
+    { href: `${home}/guides`, label: ui.pages.guides },
+    { href: `${home}/about`, label: ui.pages.about },
   ];
   const legalLinks = [
     { href: `${home}/terms`, label: ui.footer.terms },
@@ -84,10 +85,17 @@ function FooterColumn({
   title: string;
   children: React.ReactNode;
 }) {
+  // Deliberately not a heading: these three labels used to be <h2>, which put
+  // "Sản phẩm / Pháp lý / Liên hệ" into the document outline of every page,
+  // above the real content headings. A labelled list keeps the semantics for
+  // assistive tech without polluting the outline.
+  const id = `footer-col-${title.replace(/\s+/g, "-").toLowerCase()}`;
   return (
     <div>
-      <h2 className="eyebrow mb-3 text-ink-500">{title}</h2>
-      <ul className="flex flex-col gap-2.5">
+      <p id={id} className="eyebrow mb-3 text-ink-500">
+        {title}
+      </p>
+      <ul aria-labelledby={id} className="flex flex-col gap-2.5">
         {Array.isArray(children) ? (
           children.map((c, i) => <li key={i}>{c}</li>)
         ) : (

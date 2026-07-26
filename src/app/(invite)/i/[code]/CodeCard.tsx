@@ -77,7 +77,7 @@ export function CodeCard({
 
       <button
         type="button"
-        className="mt-6 flex w-full items-center justify-center gap-2 rounded-md bg-terracotta-500 px-5 py-3 text-[15px] font-semibold text-cream-100 transition-colors duration-150 hover:bg-terracotta-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-50 active:bg-terracotta-700"
+        className="mt-6 flex w-full items-center justify-center gap-2 rounded-md bg-terracotta-600 px-5 py-3 text-[15px] font-semibold text-cream-100 transition-colors duration-150 hover:bg-terracotta-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-50 active:bg-terracotta-700"
         aria-live="polite"
       >
         {state === "copied" ? copiedLabel : copyLabel}

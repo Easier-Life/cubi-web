@@ -17,6 +17,13 @@
   --color-terracotta-100: #f5d2c1;
   --color-terracotta-200: #e8b59a;
   --color-terracotta-500: #c5704f;
+  /* Filled-button background. terracotta-500 under cream-50 text is only
+     3.39:1 — below WCAG AA for normal-size text, and the invite page's buttons
+     are aimed at grandparents. This sits between 500 and 700 at 4.78:1, still
+     unmistakably terracotta, with 700 (6.16:1) as the hover so the button
+     still darkens on interaction. Mirror this into the app's DESIGN_SYSTEM
+     if the two are to stay identical. */
+  --color-terracotta-600: #a85838;
   --color-terracotta-700: #8f4a32;
 
   /* SAGE — secondary */
@@ -156,9 +163,12 @@ body::before {
   border-radius: 4px;
 }
 
-a {
-  color: inherit;
-}
+/* NOTE: do NOT add a bare `a { color: inherit }` here. Tailwind's preflight
+   already ships that rule inside `@layer base`, where text-colour utilities
+   can still win. An unlayered copy outranks EVERY layered utility regardless
+   of specificity, so `text-cream-50`, `text-ink-500` and every `hover:text-*`
+   on an anchor silently lose (this once rendered the header CTA as ink-900 on
+   terracotta — 4.03:1, a WCAG AA failure — and killed link hover site-wide). */
 
 /* ============================================================
    Chạm-giữ (hold) hành xử như chạm (tap)
@@ -211,9 +221,36 @@ a[href^="tel:"] {
   text-transform: uppercase;
 }
 
+/* ============================================================
+   Scroll reveal — quiet (DESIGN_SYSTEM §5.6): a 12px rise, once.
+   Nothing hides until the pre-paint script adds `reveal-ready` to <html>,
+   and that class removes itself after 2.5s, so a page whose JS never runs
+   still reads normally. See components/ScrollReveal.tsx.
+   ============================================================ */
+.reveal-ready .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.reveal {
+  transition:
+    opacity 520ms var(--ease-cubi),
+    transform 520ms var(--ease-cubi);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
+  }
+  .reveal-ready .reveal,
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
   *,
   *::before,

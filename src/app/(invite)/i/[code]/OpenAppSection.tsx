@@ -16,7 +16,7 @@ interface OpenAppSectionProps {
 }
 
 const buttonClass =
-  "mt-4 flex w-full items-center justify-center rounded-md bg-terracotta-500 px-5 py-3.5 text-[16px] font-semibold text-cream-100 transition-colors duration-150 hover:bg-terracotta-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-100 active:bg-terracotta-700";
+  "mt-4 flex w-full items-center justify-center rounded-md bg-terracotta-600 px-5 py-3.5 text-[16px] font-semibold text-cream-100 transition-colors duration-150 hover:bg-terracotta-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream-100 active:bg-terracotta-700";
 
 /**
  * "Already have the app?" — the path for someone who landed here with Cubi
