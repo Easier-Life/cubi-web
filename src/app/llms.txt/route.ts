@@ -23,7 +23,9 @@ const FACTS: string[] = [
   "Photos: compressed to a 1920px long edge; full-resolution originals are not kept. GPS metadata is stripped from the stored and shared image file. Cubi uses no location features and shows no map.",
   "Multiple children: supported in one timeline; an invite can open one or several children's diaries.",
   "Other features: growth tracking (height, weight), automatic age calculation from date of birth, and keepsake films built from 5–30 diary photos with music.",
-  "Data location: Supabase (Singapore, ap-southeast-1) for database and auth; Cloudflare R2 for photos and video, served via cdn.cubi.family; Google Firebase for push, analytics and crash reports; Apple APNs for iOS push.",
+  // The named sub-processors live in the Privacy Policy, which is obliged to
+  // list them; this file states the fact that matters and points there.
+  "Data location: cloud servers located in Singapore. Data may therefore be stored and processed outside Vietnam. The Privacy Policy names each service provider Cubi relies on.",
   "Account deletion: parents can delete their account in-app under Settings, or by emailing hello@cubi.family. Family members can remove their own access in-app.",
   "Languages: Vietnamese and English.",
   "Made in: Vietnam.",

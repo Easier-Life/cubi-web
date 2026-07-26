@@ -280,8 +280,8 @@ export const guides: Guide[] = [
           en: "Where are photos stored when using Cubi?",
         },
         a: {
-          vi: "Ảnh và video được lưu trên Cloudflare R2 và phục vụ qua cdn.cubi.family; cơ sở dữ liệu và đăng nhập chạy trên Supabase đặt tại Singapore. Chi tiết đầy đủ nằm trong chính sách quyền riêng tư của Cubi.",
-          en: "Photos and videos are stored on Cloudflare R2 and served through cdn.cubi.family; the database and authentication run on Supabase hosted in Singapore. The full detail is in Cubi's privacy policy.",
+          vi: "Ảnh, video và dữ liệu tài khoản được lưu trên máy chủ đám mây đặt tại Singapore, nghĩa là thông tin có thể được lưu trữ và xử lý bên ngoài Việt Nam. Chính sách quyền riêng tư của Cubi nêu rõ từng bên tham gia vận hành và họ xử lý những gì.",
+          en: "Photos, videos and account data sit on cloud servers located in Singapore, which means the information may be stored and processed outside Vietnam. Cubi's privacy policy names every provider involved and what each one handles.",
         },
       },
     ],

@@ -86,10 +86,13 @@ const pageCopy = {
       },
     },
     {
+      // Named processors belong in the Privacy Policy, which has to list them.
+      // The marketing surface gives the part a parent actually weighs — which
+      // country their child's photos sit in.
       k: { vi: "Nơi lưu dữ liệu", en: "Where data lives" },
       v: {
-        vi: "Supabase (Singapore) và Cloudflare R2",
-        en: "Supabase (Singapore) and Cloudflare R2",
+        vi: "Máy chủ đám mây đặt tại Singapore",
+        en: "Cloud servers located in Singapore",
       },
     },
     {
