@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
-import { guides } from "@/content/guides";
+import { guides, guideSlug } from "@/content/guides";
+import { locales } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 
 /**
- * Pages are listed under /vi with an hreflang alternate for /en. Guides have
- * translated slugs, so their alternates are built per-locale rather than by
- * appending one shared path to both languages.
+ * Pages are listed under /vi with an hreflang alternate for every other
+ * language. Guides have translated slugs, so their alternates are built
+ * per-locale rather than by appending one shared path to all four.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
@@ -31,23 +32,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority,
     alternates: {
-      languages: {
-        vi: `${siteConfig.url}/vi${path}`,
-        en: `${siteConfig.url}/en${path}`,
-      },
+      languages: Object.fromEntries(
+        locales.map((l) => [l, `${siteConfig.url}/${l}${path}`]),
+      ),
     },
   }));
 
   const guideEntries: MetadataRoute.Sitemap = guides.map((guide) => ({
-    url: `${siteConfig.url}/vi/guides/${guide.slug.vi}`,
+    url: `${siteConfig.url}/vi/guides/${guideSlug(guide, "vi")}`,
     lastModified: new Date(guide.updated),
     changeFrequency: "yearly",
     priority: 0.7,
     alternates: {
-      languages: {
-        vi: `${siteConfig.url}/vi/guides/${guide.slug.vi}`,
-        en: `${siteConfig.url}/en/guides/${guide.slug.en}`,
-      },
+      languages: Object.fromEntries(
+        locales.map((l) => [
+          l,
+          `${siteConfig.url}/${l}/guides/${guideSlug(guide, l)}`,
+        ]),
+      ),
     },
   }));
 

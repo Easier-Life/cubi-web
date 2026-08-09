@@ -83,7 +83,7 @@ export default async function SupportPage({
               <rect x="3" y="5" width="18" height="14" rx="2" />
               <path d="m3.5 6.5 8.5 6 8.5-6" />
             </svg>
-            {locale === "vi" ? "Viết thư cho Cubi" : "Email us"}
+            {t(ui.support.emailCta, locale)}
           </a>
         </div>
 

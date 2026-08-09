@@ -1,10 +1,10 @@
-import { type Bilingual, type Locale, t } from "@/lib/i18n";
+import { type Localized, type Locale, t } from "@/lib/i18n";
 
 export function Faq({
   items,
   locale,
 }: {
-  items: { q: Bilingual; a: Bilingual }[];
+  items: { q: Localized; a: Localized }[];
   locale: Locale;
 }) {
   return (

@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
-import { type Bilingual, type Locale, ogLocale, t } from "@/lib/i18n";
+import {
+  type Localized,
+  type Locale,
+  locales,
+  localeNames,
+  ogLocale,
+  otherLocales,
+  t,
+} from "@/lib/i18n";
+import { assetLocale } from "@/lib/assets";
 import { OG_SIZE, siteOgAlt } from "@/lib/og-meta";
 import {
   appStoreUrl,
@@ -25,13 +34,12 @@ export function buildMetadata({
   description: string;
   /**
    * Per-locale sub-paths, for pages whose slug is translated (the guides).
-   * Without this, hreflang would point Vietnamese and English at the same
-   * slug — one of which is a 404.
+   * Without this, hreflang would point every language at the same slug — and
+   * all but one of them would be a 404.
    */
-  pathByLocale?: Record<Locale, string>;
+  pathByLocale?: Partial<Record<Locale, string>>;
 }): Metadata {
-  const viPath = pathByLocale?.vi ?? path;
-  const enPath = pathByLocale?.en ?? path;
+  const pathFor = (l: Locale) => pathByLocale?.[l] ?? path;
   const url = `${siteConfig.url}/${locale}${path}`;
   // Static, quantized card (see app/og/site/[lang]/route.tsx). Every page must
   // set this explicitly: a page that declares its own `openGraph` replaces any
@@ -49,14 +57,15 @@ export function buildMetadata({
     alternates: {
       canonical: url,
       languages: {
-        vi: `${siteConfig.url}/vi${viPath}`,
-        en: `${siteConfig.url}/en${enPath}`,
+        ...Object.fromEntries(
+          locales.map((l) => [l, `${siteConfig.url}/${l}${pathFor(l)}`]),
+        ),
         // Bare URLs redirect by Accept-Language (middleware.ts), and an
         // unsupported language resolves to English — so x-default must be the
         // language-negotiating URL, not /vi, which contradicted that. Pages
         // without a bare-URL route fall back to the Vietnamese one.
         "x-default": pathByLocale
-          ? `${siteConfig.url}/vi${viPath}`
+          ? `${siteConfig.url}/vi${pathFor("vi")}`
           : `${siteConfig.url}${path}`,
       },
     },
@@ -64,7 +73,7 @@ export function buildMetadata({
       type: "website",
       siteName: "Cubi",
       locale: ogLocale[locale],
-      alternateLocale: locale === "vi" ? ["en_US"] : ["vi_VN"],
+      alternateLocale: otherLocales(locale).map((l) => ogLocale[l]),
       url,
       title,
       description,
@@ -92,13 +101,12 @@ export function organizationLd(locale: Locale = "vi") {
     logo: `${siteConfig.url}/app-icon-512.png`,
     image: `${siteConfig.url}/og/site-${locale}.png`,
     foundingLocation: { "@type": "Country", name: "Vietnam" },
-    areaServed: { "@type": "Country", name: "Vietnam" },
-    knowsLanguage: ["vi", "en"],
+    knowsLanguage: [...locales],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
       email: siteConfig.contactEmail,
-      availableLanguage: ["Vietnamese", "English"],
+      availableLanguage: locales.map((l) => localeNames[l]),
       url: `${siteConfig.url}/${locale}/support`,
     },
   };
@@ -114,7 +122,7 @@ export function organizationLd(locale: Locale = "vi") {
 export function howToLd(
   locale: Locale,
   name: string,
-  steps: { title: Bilingual; body: Bilingual }[],
+  steps: { title: Localized; body: Localized }[],
 ) {
   return {
     "@context": "https://schema.org",
@@ -139,7 +147,7 @@ export function websiteLd() {
     "@type": "WebSite",
     name: "Cubi",
     url: siteConfig.url,
-    inLanguage: ["vi", "en"],
+    inLanguage: [...locales],
     publisher: { "@type": "Organization", name: "Cubi" },
   };
 }
@@ -157,16 +165,13 @@ export function softwareApplicationLd(
     operatingSystem: "iOS 17.0 or later, Android",
     description,
     url: siteConfig.url,
-    inLanguage: ["vi", "en"],
+    inLanguage: [...locales],
     offers: { "@type": "Offer", price: "0", priceCurrency: "VND" },
     publisher: { "@type": "Organization", name: "Cubi", url: siteConfig.url },
     image: `${siteConfig.url}/app-icon-512.png`,
-    screenshot: [
-      `${siteConfig.url}/product/moment-${locale}.webp`,
-      `${siteConfig.url}/product/widget-${locale}.webp`,
-      `${siteConfig.url}/product/diary-${locale}.webp`,
-      `${siteConfig.url}/product/film-${locale}.webp`,
-    ],
+    screenshot: ["moment", "widget", "diary", "film"].map(
+      (id) => `${siteConfig.url}/product/${id}-${assetLocale(locale)}.webp`,
+    ),
   };
   if (featureList.length > 0) base.featureList = featureList;
   if (hasAppStore()) {
@@ -180,7 +185,7 @@ export function softwareApplicationLd(
   return base;
 }
 
-export function faqPageLd(items: { q: Bilingual; a: Bilingual }[], locale: Locale) {
+export function faqPageLd(items: { q: Localized; a: Localized }[], locale: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

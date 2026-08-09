@@ -33,115 +33,154 @@ const pageCopy = {
   meta: {
     vi: "Cubi là ứng dụng nhật ký bé yêu riêng tư cho gia đình: lưu ảnh, video, tuổi và số đo; widget iPhone/Android; mời ông bà không cần tài khoản.",
     en: "Cubi is a private baby diary for families: keep photos, videos, ages and measurements; iPhone and Android widgets; grandparents join without an account.",
+    fr: "Cubi est un journal de bébé privé pour la famille : photos, vidéos, âge et mesures ; widgets iPhone et Android ; les grands-parents entrent sans créer de compte.",
+    de: "Cubi ist ein privates Babytagebuch für die Familie: Fotos, Videos, Alter und Maße; Widgets für iPhone und Android; Großeltern kommen ohne Konto dazu.",
   },
   heroTrust: [
-    { vi: "Miễn phí", en: "Free to use" },
-    { vi: "iPhone và Android", en: "iPhone and Android" },
-    { vi: "Không quảng cáo", en: "No ads" },
+    { vi: "Miễn phí", en: "Free to use", fr: "Gratuit", de: "Kostenlos" },
+    { vi: "iPhone và Android", en: "iPhone and Android", fr: "iPhone et Android", de: "iPhone und Android" },
+    { vi: "Không quảng cáo", en: "No ads", fr: "Sans publicité", de: "Ohne Werbung" },
   ],
-  problemEyebrow: { vi: "Điều ai cũng thấy", en: "What every family knows" },
-  whatEyebrow: { vi: "Cubi là gì?", en: "What is Cubi?" },
+  metaTitle: {
+    vi: "Cubi — Nhật ký bé yêu riêng tư cho cả nhà",
+    en: "Cubi — Private baby diary for the whole family",
+    fr: "Cubi — Le journal de bébé privé pour toute la famille",
+    de: "Cubi — Das private Babytagebuch für die ganze Familie",
+  },
+  faqTitle: {
+    vi: "Những điều cả nhà hay hỏi",
+    en: "Questions families ask",
+    fr: "Les questions que les familles posent",
+    de: "Was Familien oft fragen",
+  },
+  heroTrustAria: { vi: "Thông tin nhanh", en: "Quick facts", fr: "En bref", de: "Kurz gesagt" },
+  problemEyebrow: { vi: "Điều ai cũng thấy", en: "What every family knows", fr: "Ce que chaque famille connaît", de: "Was jede Familie kennt" },
+  whatEyebrow: { vi: "Cubi là gì?", en: "What is Cubi?", fr: "Cubi, c'est quoi ?", de: "Was ist Cubi?" },
   whatTitle: {
     vi: "Một cuốn nhật ký bé yêu riêng tư, không phải mạng xã hội",
     en: "A private baby diary, not another social network",
+    fr: "Un journal de bébé privé, pas un réseau social de plus",
+    de: "Ein privates Babytagebuch, kein weiteres soziales Netzwerk",
   },
   whatBody: {
     vi: "Cubi giúp bố mẹ lưu ảnh, video và vài dòng về những ngày bé lớn; tự xếp theo tuổi của bé; rồi chia sẻ đúng với người thân được mời. Ảnh mới có thể tự hiện trên widget màn hình chính của cả nhà, nên ông bà ở xa vẫn thấy cháu mỗi ngày mà không cần mở nhóm chat hay tìm lại ảnh cũ.",
     en: "Cubi helps parents keep photos, videos and a few words from the days their child grows, organized by the child's age and shared only with invited family. New photos can appear automatically on the whole family's home-screen widgets, so far-away grandparents see the little one each day without digging through group chats.",
+    fr: "Cubi aide les parents à garder photos, vidéos et quelques mots des jours où leur enfant grandit, rangés selon son âge et partagés uniquement avec la famille invitée. Les nouvelles photos peuvent apparaître d'elles-mêmes sur le widget de toute la famille : les grands-parents éloignés voient le petit chaque jour, sans fouiller dans les conversations de groupe.",
+    de: "Cubi hilft Eltern, Fotos, Videos und ein paar Worte aus den Tagen festzuhalten, an denen ihr Kind wächst — geordnet nach dem Alter des Kindes und nur mit der eingeladenen Familie geteilt. Neue Fotos erscheinen von allein auf den Homescreen-Widgets der ganzen Familie, sodass weit entfernte Großeltern das Kleine jeden Tag sehen, ohne in Gruppenchats zu suchen.",
   },
-  factsTitle: { vi: "Cubi trong một bảng", en: "Cubi at a glance" },
+  factsTitle: { vi: "Cubi trong một bảng", en: "Cubi at a glance", fr: "Cubi en un tableau", de: "Cubi auf einen Blick" },
   facts: [
     {
-      k: { vi: "Giá", en: "Price" },
-      v: { vi: "Miễn phí", en: "Free" },
+      k: { vi: "Giá", en: "Price", fr: "Prix", de: "Preis" },
+      v: { vi: "Miễn phí", en: "Free", fr: "Gratuit", de: "Kostenlos" },
     },
     {
-      k: { vi: "Thiết bị", en: "Devices" },
-      v: { vi: "iPhone (iOS 17 trở lên) và Android", en: "iPhone (iOS 17+) and Android" },
+      k: { vi: "Thiết bị", en: "Devices", fr: "Appareils", de: "Geräte" },
+      v: { vi: "iPhone (iOS 17 trở lên) và Android", en: "iPhone (iOS 17+) and Android", fr: "iPhone (iOS 17 ou plus) et Android", de: "iPhone (ab iOS 17) und Android" },
     },
     {
-      k: { vi: "Widget màn hình chính", en: "Home-screen widget" },
-      v: { vi: "Có, trên cả hai hệ", en: "Yes, on both platforms" },
+      k: { vi: "Widget màn hình chính", en: "Home-screen widget", fr: "Widget sur l'écran d'accueil", de: "Homescreen-Widget" },
+      v: { vi: "Có, trên cả hai hệ", en: "Yes, on both platforms", fr: "Oui, sur les deux plateformes", de: "Ja, auf beiden Systemen" },
     },
     {
-      k: { vi: "Ông bà tham gia", en: "How family joins" },
+      k: { vi: "Ông bà tham gia", en: "How family joins", fr: "Comment la famille rejoint", de: "Wie die Familie dazukommt" },
       v: {
         vi: "Mã mời 7 ký tự hoặc link — không cần tài khoản",
         en: "A 7-character invite code or link — no account",
+        fr: "Un code d'invitation de 7 caractères ou un lien — sans compte",
+        de: "Ein 7-stelliger Einladungscode oder ein Link — ohne Konto",
       },
     },
     {
-      k: { vi: "Bình luận", en: "Comments" },
-      v: { vi: "Không có — chỉ thả emoji", en: "None — emoji reactions only" },
+      k: { vi: "Bình luận", en: "Comments", fr: "Commentaires", de: "Kommentare" },
+      v: { vi: "Không có — chỉ thả emoji", en: "None — emoji reactions only", fr: "Aucun — uniquement des emojis", de: "Keine — nur Emoji-Reaktionen" },
     },
     {
-      k: { vi: "Quảng cáo & bảng tin công khai", en: "Ads & public feed" },
-      v: { vi: "Không có cả hai", en: "Neither" },
+      k: { vi: "Quảng cáo & bảng tin công khai", en: "Ads & public feed", fr: "Publicité et fil public", de: "Werbung & öffentlicher Feed" },
+      v: { vi: "Không có cả hai", en: "Neither", fr: "Ni l'un ni l'autre", de: "Weder noch" },
     },
     {
-      k: { vi: "Ảnh", en: "Photos" },
+      k: { vi: "Ảnh", en: "Photos", fr: "Photos", de: "Fotos" },
       v: {
         vi: "Nén cạnh dài 1920px; GPS được gỡ khỏi file lưu và chia sẻ",
         en: "Compressed to a 1920px long edge; GPS stripped from the stored and shared file",
+        fr: "Compressées à 1920 px sur le grand côté ; les données GPS sont retirées du fichier stocké et partagé",
+        de: "Auf 1920 px lange Kante komprimiert; GPS-Daten werden aus der gespeicherten und geteilten Datei entfernt",
       },
     },
     {
       // Named processors belong in the Privacy Policy, which has to list them.
       // The marketing surface gives the part a parent actually weighs — which
       // country their child's photos sit in.
-      k: { vi: "Nơi lưu dữ liệu", en: "Where data lives" },
+      k: { vi: "Nơi lưu dữ liệu", en: "Where data lives", fr: "Où vivent les données", de: "Wo die Daten liegen" },
       v: {
         vi: "Máy chủ đám mây đặt tại Singapore",
         en: "Cloud servers located in Singapore",
+        fr: "Des serveurs cloud situés à Singapour",
+        de: "Cloud-Server in Singapur",
       },
     },
     {
-      k: { vi: "Xóa tài khoản", en: "Account deletion" },
-      v: { vi: "Ngay trong app, hoặc qua email", en: "In the app, or by email" },
+      k: { vi: "Xóa tài khoản", en: "Account deletion", fr: "Supprimer le compte", de: "Konto löschen" },
+      v: { vi: "Ngay trong app, hoặc qua email", en: "In the app, or by email", fr: "Dans l'app, ou par e-mail", de: "In der App oder per E-Mail" },
     },
     {
-      k: { vi: "Làm tại", en: "Made in" },
-      v: { vi: "Việt Nam", en: "Vietnam" },
+      k: { vi: "Làm tại", en: "Made in", fr: "Fait au", de: "Gemacht in" },
+      v: { vi: "Việt Nam", en: "Vietnam", fr: "Vietnam", de: "Vietnam" },
     },
   ],
-  galleryEyebrow: { vi: "App thật, tính năng thật", en: "Real app, real features" },
+  galleryEyebrow: { vi: "App thật, tính năng thật", en: "Real app, real features", fr: "La vraie app, les vraies fonctions", de: "Echte App, echte Funktionen" },
   galleryTitle: {
     vi: "Nhìn một vòng là hiểu Cubi",
     en: "See Cubi at a glance",
+    fr: "Un coup d'œil suffit pour comprendre Cubi",
+    de: "Ein Blick, und du kennst Cubi",
   },
   galleryBody: {
     vi: "Vuốt qua các màn hình thật của Cubi — không phải ảnh dựng.",
     en: "Swipe through real Cubi screens — not mock-ups.",
+    fr: "Faites défiler de vrais écrans de Cubi — pas des maquettes.",
+    de: "Wisch durch echte Cubi-Screens — keine Attrappen.",
   },
-  swipeHint: { vi: "Vuốt để xem thêm", en: "Swipe to see more" },
-  featuresEyebrow: { vi: "Đầy đủ cho hành trình của bé", en: "Made for the whole journey" },
+  swipeHint: { vi: "Vuốt để xem thêm", en: "Swipe to see more", fr: "Faites défiler pour voir plus", de: "Wischen für mehr" },
+  featuresEyebrow: { vi: "Đầy đủ cho hành trình của bé", en: "Made for the whole journey", fr: "Pensé pour tout le chemin", de: "Für den ganzen Weg gemacht" },
   featuresTitle: {
     vi: "Không chỉ là một album ảnh",
     en: "More than a photo album",
+    fr: "Bien plus qu'un album photo",
+    de: "Mehr als ein Fotoalbum",
   },
   featuresBody: {
     vi: "Cubi gom những việc bố mẹ thường làm rời rạc vào một nơi yên tĩnh: viết nhật ký, giữ ảnh và video, theo dõi bé lớn, mời cả nhà và làm thước phim.",
     en: "Cubi brings the scattered parts of family memory-keeping into one quiet place: journaling, photos and video, growth, family sharing and keepsake films.",
+    fr: "Cubi réunit dans un même endroit calme tout ce qui se fait d'habitude éparpillé : le journal, les photos et vidéos, la croissance, le partage en famille et les petits films souvenirs.",
+    de: "Cubi bringt zusammen, was sonst verstreut liegt, an einen ruhigen Ort: Tagebuch, Fotos und Videos, Wachstum, Teilen mit der Familie und Erinnerungsfilme.",
   },
-  featuresMore: { vi: "Và những điều nhỏ khác", en: "And the smaller things" },
-  howEyebrow: { vi: "Cách Cubi hoạt động", en: "How Cubi works" },
+  featuresMore: { vi: "Và những điều nhỏ khác", en: "And the smaller things", fr: "Et les petits détails", de: "Und die kleinen Dinge" },
+  howEyebrow: { vi: "Cách Cubi hoạt động", en: "How Cubi works", fr: "Comment Cubi fonctionne", de: "So funktioniert Cubi" },
   howTitle: {
     vi: "Ba bước để cả nhà cùng nhìn bé lớn",
     en: "Three steps to watch the baby grow together",
+    fr: "Trois étapes pour voir bébé grandir, ensemble",
+    de: "Drei Schritte, um das Baby gemeinsam wachsen zu sehen",
   },
   howToName: {
     vi: "Cách chia sẻ ảnh của bé với ông bà ở xa bằng Cubi",
     en: "How to share your baby's photos with faraway grandparents using Cubi",
+    fr: "Comment partager les photos de votre bébé avec des grands-parents éloignés grâce à Cubi",
+    de: "So teilst du die Fotos deines Babys mit weit entfernten Großeltern — mit Cubi",
   },
   // The privacy feature card already uses m.privacy.title verbatim, so the
   // philosophy column needs its own heading or the page carries the same h3 twice.
-  privacyShortTitle: { vi: "Quyền riêng tư, nói gọn", en: "Privacy, in short" },
+  privacyShortTitle: { vi: "Quyền riêng tư, nói gọn", en: "Privacy, in short", fr: "La confidentialité, en bref", de: "Privatsphäre, kurz gesagt" },
   privateNote: {
     vi: "Mỗi khoảnh khắc có thể để Cả nhà, Chỉ một số người hoặc Chỉ mình tôi. Bố mẹ luôn là người quyết định.",
     en: "Each moment can be for Everyone, Selected people, or Only me. Parents always decide.",
+    fr: "Chaque instant peut être pour Toute la famille, Certaines personnes, ou Moi seul. Ce sont toujours les parents qui décident.",
+    de: "Jeder Moment kann für Alle, Ausgewählte oder Nur mich sein. Entscheiden tun immer die Eltern.",
   },
-  audienceParents: { vi: "Cho bố mẹ", en: "For parents" },
-  audienceFamily: { vi: "Cho ông bà và người thân", en: "For grandparents and family" },
+  audienceParents: { vi: "Cho bố mẹ", en: "For parents", fr: "Pour les parents", de: "Für Eltern" },
+  audienceFamily: { vi: "Cho ông bà và người thân", en: "For grandparents and family", fr: "Pour les grands-parents et les proches", de: "Für Großeltern und Angehörige" },
 } as const;
 
 const accentClasses = [
@@ -157,10 +196,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const locale: Locale = isLocale(lang) ? lang : "vi";
-  const title =
-    locale === "vi"
-      ? "Cubi — Nhật ký bé yêu riêng tư cho cả nhà"
-      : "Cubi — Private baby diary for the whole family";
+  const title = t(pageCopy.metaTitle, locale);
   const base = buildMetadata({
     locale,
     path: "",
@@ -529,7 +565,7 @@ export default async function HomePage({
         <div className="reveal mb-8 text-center">
           <p className="eyebrow text-sage-500">{t(ui.nav.faq, locale)}</p>
           <h2 className="font-display mt-3 text-[30px] font-semibold text-ink-900 sm:text-[40px]">
-            {locale === "vi" ? "Những điều cả nhà hay hỏi" : "Questions families ask"}
+            {t(pageCopy.faqTitle, locale)}
           </h2>
         </div>
         <div className="reveal">
@@ -568,7 +604,7 @@ function HeroTrust({ locale }: { locale: Locale }) {
   return (
     <ul
       className="flex flex-wrap gap-2"
-      aria-label={locale === "vi" ? "Thông tin nhanh" : "Quick facts"}
+      aria-label={t(pageCopy.heroTrustAria, locale)}
     >
       {pageCopy.heroTrust.map((item) => (
         <li

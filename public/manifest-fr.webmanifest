@@ -1,0 +1,15 @@
+{
+  "name": "Cubi — Le journal de bébé pour toute la famille",
+  "short_name": "Cubi",
+  "description": "Un journal photo privé de votre bébé, pour toute la famille. Même loin, les grands-parents le voient grandir chaque jour, directement sur le widget de l'écran d'accueil.",
+  "start_url": "/fr",
+  "display": "standalone",
+  "background_color": "#f8f3ec",
+  "theme_color": "#f8f3ec",
+  "lang": "fr",
+  "categories": ["lifestyle", "photo", "family"],
+  "icons": [
+    { "src": "/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

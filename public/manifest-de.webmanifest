@@ -1,0 +1,15 @@
+{
+  "name": "Cubi — Das Babytagebuch für die ganze Familie",
+  "short_name": "Cubi",
+  "description": "Ein privates Fototagebuch deines Babys für die ganze Familie. Auch aus der Ferne sehen Großeltern jeden Tag, wie das Kleine wächst — direkt im Widget auf dem Homescreen.",
+  "start_url": "/de",
+  "display": "standalone",
+  "background_color": "#f8f3ec",
+  "theme_color": "#f8f3ec",
+  "lang": "de",
+  "categories": ["lifestyle", "photo", "family"],
+  "icons": [
+    { "src": "/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

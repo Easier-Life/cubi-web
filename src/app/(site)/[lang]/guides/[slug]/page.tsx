@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { isLocale, locales, type Locale, t } from "@/lib/i18n";
-import { guides, guideBySlug } from "@/content/guides";
+import { intlLocale, isLocale, locales, type Locale, t } from "@/lib/i18n";
+import { guides, guideBySlug, guideSlug } from "@/content/guides";
 import { ui } from "@/content/ui";
 import {
   articleLd,
@@ -19,7 +19,7 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return locales.flatMap((lang) =>
-    guides.map((guide) => ({ lang, slug: guide.slug[lang] })),
+    guides.map((guide) => ({ lang, slug: guideSlug(guide, lang) })),
   );
 }
 
@@ -27,7 +27,7 @@ export function generateStaticParams() {
 function resolve(lang: string, slug: string) {
   const locale: Locale = isLocale(lang) ? lang : "vi";
   const guide = guideBySlug(slug);
-  if (!guide || guide.slug[locale] !== slug) return null;
+  if (!guide || guideSlug(guide, locale) !== slug) return null;
   return { locale, guide };
 }
 
@@ -43,13 +43,12 @@ export async function generateMetadata({
 
   return buildMetadata({
     locale,
-    path: `/guides/${guide.slug[locale]}`,
+    path: `/guides/${guideSlug(guide, locale)}`,
     title: t(guide.title, locale),
     description: t(guide.description, locale),
-    pathByLocale: {
-      vi: `/guides/${guide.slug.vi}`,
-      en: `/guides/${guide.slug.en}`,
-    },
+    pathByLocale: Object.fromEntries(
+      locales.map((l) => [l, `/guides/${guideSlug(guide, l)}`]),
+    ),
   });
 }
 
@@ -64,9 +63,9 @@ export default async function GuidePage({
   const { locale, guide } = found;
 
   const others = guides.filter((g) => g.id !== guide.id);
-  const path = `/guides/${guide.slug[locale]}`;
+  const path = `/guides/${guideSlug(guide, locale)}`;
   const updated = new Date(guide.updated).toLocaleDateString(
-    locale === "vi" ? "vi-VN" : "en-GB",
+    intlLocale[locale],
     { day: "numeric", month: "long", year: "numeric" },
   );
 
@@ -147,7 +146,7 @@ export default async function GuidePage({
 
         <section className="mt-14 border-t border-divider pt-9">
           <h2 className="font-display text-[24px] font-semibold text-ink-900">
-            {locale === "vi" ? "Câu hỏi thường gặp" : "Frequently asked"}
+            {t(ui.guides.faqHeading, locale)}
           </h2>
           <dl className="mt-5 flex flex-col gap-6">
             {guide.faq.map((item, i) => (
@@ -188,7 +187,7 @@ export default async function GuidePage({
               {others.map((other) => (
                 <li key={other.id}>
                   <Link
-                    href={`/${locale}/guides/${t(other.slug, locale)}`}
+                    href={`/${locale}/guides/${guideSlug(other, locale)}`}
                     className="group flex items-start gap-3 rounded-xl border border-cream-300 bg-cream-50/60 px-5 py-4 transition-colors hover:border-terracotta-200"
                   >
                     <span aria-hidden="true" className="mt-0.5 text-terracotta-500">

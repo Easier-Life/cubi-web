@@ -3,8 +3,8 @@
 Web companion cho app **Cubi** (nhật ký bé cho cả nhà). Repo này độc lập với
 Flutter app (`../cubi/`). Ba vai trò chính:
 
-1. **Product website** — landing page song ngữ, mobile-first, mô tả đầy đủ app
-   Cubi bằng nội dung crawlable và ảnh chụp sản phẩm thật.
+1. **Product website** — landing page 4 ngôn ngữ (vi · en · fr · de), mobile-first,
+   mô tả đầy đủ app Cubi bằng nội dung crawlable và ảnh chụp sản phẩm thật.
 2. **Apple App Site Association (AASA)** — phục vụ Universal Links từ
    `cubi.family/i/*` để app iOS mở thẳng invite mà không qua Safari.
 3. **Landing page invite** (`/i/{code}`) — fallback khi ông bà tap link mà chưa
@@ -20,15 +20,19 @@ Flutter app (`../cubi/`). Ba vai trò chính:
 
 ## Routes
 
+`{lang}` là một trong `vi` · `en` · `fr` · `de`.
+
 | Route                                          | Mục đích                       |
 | ---------------------------------------------- | ------------------------------ |
-| `/`                                            | Phát hiện ngôn ngữ → `/vi` hoặc `/en` |
-| `/vi`, `/en`                                   | Product landing page           |
-| `/vi/download`, `/en/download`                 | Trang tải app theo thiết bị     |
-| `/vi/privacy`, `/en/privacy`                   | Chính sách quyền riêng tư       |
-| `/vi/terms`, `/en/terms`                       | Điều khoản sử dụng              |
-| `/vi/support`, `/en/support`                   | Hỗ trợ                          |
-| `/vi/delete-account`, `/en/delete-account`     | Hướng dẫn xóa tài khoản         |
+| `/`                                            | Phát hiện ngôn ngữ → `/{lang}` (không nhận ra thì về `/en`) |
+| `/{lang}`                                      | Product landing page           |
+| `/{lang}/download`                             | Trang tải app theo thiết bị     |
+| `/{lang}/privacy`                              | Chính sách quyền riêng tư       |
+| `/{lang}/terms`                                | Điều khoản sử dụng              |
+| `/{lang}/support`                              | Hỗ trợ                          |
+| `/{lang}/delete-account`                       | Hướng dẫn xóa tài khoản         |
+| `/{lang}/guides`, `/{lang}/guides/[slug]`      | Cẩm nang (slug dịch theo ngôn ngữ) |
+| `/{lang}/about`                                | Về Cubi                         |
 | `/i/[code]`                                    | Landing invite                  |
 | `/.well-known/apple-app-site-association`      | AASA JSON cho iOS Universal Links |
 | `/.well-known/assetlinks.json`                 | Android App Links               |
@@ -107,6 +111,21 @@ Expect:
 - HTTP `200`
 - `content-type: application/json`
 - Body chứa `"appIDs":["Y4A8JWGT4J.family.cubi.app"]`
+
+## Ngôn ngữ (i18n)
+
+Bốn ngôn ngữ: **vi** (chính, viết trước) · **en** · **fr** · **de**. Tất cả
+sống trong `src/lib/i18n.ts`; copy nằm ở `src/content/*`.
+
+- Kiểu `Localized` bắt buộc `vi` + `en`, còn `fr`/`de` **optional**: thiếu bản
+  dịch thì `t()` fallback về tiếng Anh thay vì vỡ build.
+- Kiểm tra còn thiếu chỗ nào: `npm run i18n:coverage` (thêm `-- --all` để xem hết).
+- Middleware nhớ ngôn ngữ đang đọc bằng cookie `cubi-locale`; URL trần
+  (`/privacy`) redirect theo `Accept-Language`.
+- Ảnh chụp sản phẩm trong `public/product/` mới có bản `vi` và `en`; `fr`/`de`
+  dùng tạm ảnh `en` qua `assetLocale()` trong `src/lib/assets.ts` — khi có ảnh
+  chụp UI tiếng Pháp/Đức thì thêm file `*-fr.webp` / `*-de.webp` và mở rộng
+  helper đó.
 
 ## Design tokens
 

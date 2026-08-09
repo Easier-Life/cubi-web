@@ -14,7 +14,7 @@ import { isLocale, locales } from "@/lib/i18n";
  *   curl -s localhost:3789/og/site/vi | python3 -c "from PIL import Image; import sys, io; \
  *     Image.open(io.BytesIO(sys.stdin.buffer.read())).convert('RGB').convert('P', \
  *     palette=Image.ADAPTIVE, colors=255).save('public/og/site-vi.png', optimize=True)"
- *   # same for /en → public/og/site-en.png
+ *   # same for /en, /fr and /de → public/og/site-<lang>.png
  *
  * This replaced a file-convention `opengraph-image.tsx` under `(site)/[lang]`:
  * that only ever attached an image to the home page — every legal/support page

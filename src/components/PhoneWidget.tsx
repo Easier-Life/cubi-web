@@ -1,4 +1,5 @@
-import type { Locale } from "@/lib/i18n";
+import { t, type Locale } from "@/lib/i18n";
+import { ui } from "@/content/ui";
 
 /**
  * iPhone home screen showing the Cubi Large photo widget — the signature
@@ -12,12 +13,11 @@ export function PhoneWidget({
   locale: Locale;
   className?: string;
 }) {
-  const agePill = locale === "vi" ? "6 tháng 12 ngày" : "6 months 12 days";
+  const agePill = t(ui.demo.age, locale);
   const time = "9:41";
-  const reactionFrom = locale === "vi" ? "Bà ngoại" : "Grandma";
-  const reactionVerb = locale === "vi" ? "vừa thả tim" : "sent a heart";
-  const widgetCaption =
-    locale === "vi" ? "Bống đang lớn mỗi ngày" : "Bống is growing every day";
+  const reactionFrom = t(ui.demo.reactionFrom, locale);
+  const reactionVerb = t(ui.demo.reactionVerb, locale);
+  const widgetCaption = t(ui.demo.widgetCaption, locale);
 
   return (
     <div className={`relative mx-auto w-full max-w-[300px] ${className}`}>

@@ -5,7 +5,7 @@ import { isLocale, locales, type Locale } from "@/lib/i18n";
 export const LOCALE_COOKIE = "cubi-locale";
 
 // When we can't resolve a supported language — no Accept-Language at all, or a
-// real but unsupported one (e.g. fr, ja) — fall back to English. Vietnamese is
+// real but unsupported one (e.g. ja, es) — fall back to English. Vietnamese is
 // only chosen when the device explicitly asks for it.
 const NO_SIGNAL_LOCALE: Locale = "en";
 const FOREIGN_LOCALE: Locale = "en";

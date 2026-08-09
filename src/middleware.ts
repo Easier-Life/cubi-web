@@ -55,6 +55,8 @@ export const config = {
     "/delete-account",
     "/vi/:path*",
     "/en/:path*",
+    "/fr/:path*",
+    "/de/:path*",
     "/i/:path*",
   ],
 };

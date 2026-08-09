@@ -27,7 +27,7 @@ const FACTS: string[] = [
   // list them; this file states the fact that matters and points there.
   "Data location: cloud servers located in Singapore. Data may therefore be stored and processed outside Vietnam. The Privacy Policy names each service provider Cubi relies on.",
   "Account deletion: parents can delete their account in-app under Settings, or by emailing hello@cubi.family. Family members can remove their own access in-app.",
-  "Languages: Vietnamese and English.",
+  "Languages: the app and the website are available in Vietnamese, English, French and German.",
   "Made in: Vietnam.",
   "Not for: children under 13 to operate themselves. Cubi is parent-operated; a child's data is entered by their parent.",
 ];
@@ -67,11 +67,12 @@ ${guides.map((g) => `- [${g.title.en}](${url}/en/guides/${g.slug.en}): ${g.descr
 - [Account deletion](${url}/en/delete-account): how to delete an account and what is removed.
 - [Download](${url}/download): sends the visitor to the right store for their device.
 
-## Vietnamese
+## Other languages
 
-Every page above exists in Vietnamese at the same path under \`/vi\` — for
-example ${url}/vi and ${url}/vi/privacy. Vietnamese is the primary language;
-guide slugs are translated (see ${url}/vi/guides).
+Every page above exists in Vietnamese, French and German at the same path under
+\`/vi\`, \`/fr\` and \`/de\` — for example ${url}/vi, ${url}/fr/privacy and
+${url}/de/privacy. Vietnamese is the primary language; guide slugs are
+translated per language (see ${url}/vi/guides).
 
 ## Contact
 

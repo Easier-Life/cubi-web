@@ -51,7 +51,7 @@ export async function generateMetadata({
     authors: [{ name: "Cubi" }],
     creator: "Cubi",
     publisher: "Cubi",
-    manifest: locale === "vi" ? "/manifest-vi.webmanifest" : "/manifest-en.webmanifest",
+    manifest: `/manifest-${locale}.webmanifest`,
     formatDetection: { telephone: false },
     appleWebApp: { capable: true, title: "Cubi", statusBarStyle: "default" },
     openGraph: {

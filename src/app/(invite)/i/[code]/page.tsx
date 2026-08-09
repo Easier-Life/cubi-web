@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { CubiMark } from "@/components/CubiMark";
 import { StoreButtons } from "@/components/StoreButtons";
 import { isLocale, ogLocale, type Locale } from "@/lib/i18n";
+import { inviteOgAlt } from "@/lib/og-meta";
 import { platformFromUserAgent } from "@/lib/platform-detect";
 import { siteConfig } from "@/lib/site";
 import {
@@ -64,10 +65,7 @@ export async function generateMetadata({
     url: `${siteConfig.url}/og/invite-${locale}.png`,
     width: 1200,
     height: 630,
-    alt:
-      locale === "vi"
-        ? "Bạn được mời xem nhật ký của một em bé trên Cubi"
-        : "You're invited to a baby's diary on Cubi",
+    alt: inviteOgAlt[locale],
   };
 
   return {

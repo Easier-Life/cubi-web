@@ -20,6 +20,11 @@ export const siteConfig = {
     appStore: {
       vi: "https://apps.apple.com/vn/app/cubi-nh%E1%BA%ADt-k%C3%BD-b%C3%A9-y%C3%AAu-widget/id6769685747?l=vi",
       en: "https://apps.apple.com/vn/app/cubi-baby-diary-photo-widget/id6769685747",
+      // French/German readers are not in the Vietnamese storefront, so these
+      // use the storefront-agnostic app URL: Apple redirects it to the
+      // visitor's own country store, which then shows the localized listing.
+      fr: "https://apps.apple.com/app/id6769685747?l=fr",
+      de: "https://apps.apple.com/app/id6769685747?l=de",
     },
     playStore: "https://play.google.com/store/apps/details?id=family.cubi.app",
   },

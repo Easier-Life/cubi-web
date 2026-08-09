@@ -20,6 +20,14 @@ export const inviteOgContent: Record<Locale, { subtitle: string; footer: string 
     subtitle: "You're invited to a baby's diary.",
     footer: "cubi.family · Install Cubi and enter your invite code",
   },
+  fr: {
+    subtitle: "Une famille vous invite à suivre le journal de son bébé.",
+    footer: "cubi.family · Installez Cubi et saisissez le code d'invitation",
+  },
+  de: {
+    subtitle: "Eine Familie lädt dich zu ihrem Babytagebuch ein.",
+    footer: "cubi.family · Cubi installieren und Einladungscode eingeben",
+  },
 };
 
 /**
@@ -36,10 +44,28 @@ export const siteOgContent: Record<Locale, { subtitle: string; footer: string }>
     subtitle: "Tiny moments, kept forever.",
     footer: "cubi.family · A private baby diary for the whole family",
   },
+  fr: {
+    subtitle: "Les petits jours, gardés pour toujours.",
+    footer: "cubi.family · Le journal privé de bébé, pour toute la famille",
+  },
+  de: {
+    subtitle: "Jeder Tag zählt — für immer erzählt.",
+    footer: "cubi.family · Das private Babytagebuch für die ganze Familie",
+  },
+};
+
+/** og:image alt text for the invite card. */
+export const inviteOgAlt: Record<Locale, string> = {
+  vi: "Bạn được mời xem nhật ký của một em bé trên Cubi",
+  en: "You're invited to a baby's diary on Cubi",
+  fr: "Une famille vous invite à suivre le journal de son bébé sur Cubi",
+  de: "Du bist eingeladen, das Tagebuch eines Babys auf Cubi zu sehen",
 };
 
 /** og:image alt text, localized — read aloud by screen readers on shares. */
 export const siteOgAlt: Record<Locale, string> = {
   vi: "Cubi — nhật ký bé yêu riêng tư cho cả nhà",
   en: "Cubi — a private baby diary for the whole family",
+  fr: "Cubi — le journal privé de bébé pour toute la famille",
+  de: "Cubi — das private Babytagebuch für die ganze Familie",
 };
